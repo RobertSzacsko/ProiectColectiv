@@ -22,3 +22,25 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.red{
+    background-color:red;
+}
+
+.blue{
+    background-color:blue;
+}
+
+.green{
+    background-color:green;
+}
+
+.margin-card{
+    margin:10px;
+}
+
+.shadow-card {
+    padding: 5px;
+    box-shadow: 0 0 10px #808080;
+    border-radius: 5px;
+}
