@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <header>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top menu-custom">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href='@Url.Action("Index", "Pacient")'>
-                <img src='@Url.Content("~/Content/Images/logo.png")' width="50" height="50" />
+                <img src='@Url.Content("~/Content/Images/Logo.png")' width="50" height="50" />
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -27,7 +27,7 @@
     </div>
 </header>
 <body>
-    <div class="general-container body-content">
+    <div class="container-wraper body-content">
         @RenderBody()
     </div>
     @Scripts.Render("~/bundles/jquery")
@@ -36,6 +36,10 @@
 </body>
 
 <footer>
-    
+    <div class="footer-wraper">
+        <div class="footer-content">
+            <p class="footer-p">&copy; @DateTime.Now.Year - Proiect Colectiv</p>
+        </div>
+    </div>
 </footer>
 </html>
