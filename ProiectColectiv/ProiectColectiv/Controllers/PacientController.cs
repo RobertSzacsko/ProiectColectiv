@@ -13,5 +13,10 @@ namespace ProiectColectiv.Controllers
         {
             return View();
         }
+
+        public ActionResult IstoricFisa()
+        {
+            return View();
+        }
     }
 }
