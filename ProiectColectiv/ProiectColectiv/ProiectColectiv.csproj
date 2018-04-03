@@ -189,6 +189,8 @@
     <Content Include="Views\Shared\_LayoutPacient.cshtml" />
     <Content Include="Views\Pacient\Index.cshtml" />
     <Content Include="Views\Pacient\IstoricFisa.cshtml" />
+    <Content Include="Views\Shared\_LayoutAsistent.cshtml" />
+    <Content Include="Views\Asistent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
