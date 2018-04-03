@@ -18,5 +18,10 @@ namespace ProiectColectiv.Controllers
         {
             return View();
         }
+        public ActionResult Programare()
+        {
+            return View();
+        }
     }
+
 }
