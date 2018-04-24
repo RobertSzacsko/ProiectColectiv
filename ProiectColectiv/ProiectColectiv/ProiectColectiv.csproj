@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -53,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,16 +147,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Alergii.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AsistentController.cs" />
+    <Compile Include="Arhiva.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asistent.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Boli.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacientController.cs" />
+    <Compile Include="DatePersonale.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnostic.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FisaMedicala.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Internari.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Istoric.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Medic.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Medicamente.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pacient.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Programari.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProiectColectiv.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProiectColectiv.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProiectColectiv.cs" />
+    <Compile Include="ProiectColectiv.Designer.cs">
+      <DependentUpon>ProiectColectiv.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ProiectColectiv1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Retete.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilizator.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vaccinuri.cs">
+      <DependentUpon>ProiectColectiv.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -157,10 +231,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ProiectColectiv.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProiectColectiv.Context.cs</LastGenOutput>
+      <DependentUpon>ProiectColectiv.edmx</DependentUpon>
+    </Content>
+    <Content Include="ProiectColectiv.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProiectColectiv.edmx</DependentUpon>
+      <LastGenOutput>ProiectColectiv1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="ProiectColectiv.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProiectColectiv.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ProiectColectiv.edmx.diagram">
+      <DependentUpon>ProiectColectiv.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -212,6 +303,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

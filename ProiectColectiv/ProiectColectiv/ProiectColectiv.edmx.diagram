@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9dba5360c8f44cdcac60eeb6938aa365" Name="Diagram1">
+        <EntityTypeShape EntityType="ProiectColectivModel.Administrator" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Alergii" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Arhiva" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Asistent" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Boli" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.DatePersonale" Width="1.5" PointX="1.5" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Diagnostic" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.FisaMedicala" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Internari" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Istoric" Width="1.5" PointX="5.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Medic" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Medicamente" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Pacient" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Programari" Width="1.5" PointX="8.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Retete" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Utilizator" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProiectColectivModel.Vaccinuri" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Administr__id_Ut__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Alergii__id_Fisa__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Arhiva__id_FisaM__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Asistent__id_Med__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Asistent__id_Uti__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Programar__id_As__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Boli__id_FisaMed__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Utilizato__id_Da__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Diagnosti__id_Pr__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Internari__id_Fi__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Pacient__id_Fisa__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Retete__id_FisaM__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Vaccinuri__id_Fi__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Medic__id_Utiliz__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Pacient__id_Medi__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Programar__id_Me__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Medicamen__id_Re__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Pacient__id_Util__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProiectColectivModel.FK__Programar__id_Pa__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

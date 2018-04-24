@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProiectColectivModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="id_Administrator" />
+          </Key>
+          <Property Name="id_Administrator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Utilizator" Type="int" />
+        </EntityType>
+        <EntityType Name="Alergii">
+          <Key>
+            <PropertyRef Name="id_Alergie" />
+          </Key>
+          <Property Name="id_Alergie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tip" Type="varchar" MaxLength="30" />
+          <Property Name="id_FisaMedicala" Type="int" />
+        </EntityType>
+        <EntityType Name="Arhiva">
+          <Key>
+            <PropertyRef Name="id_Arhiva" />
+          </Key>
+          <Property Name="id_Arhiva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_FisaMedicala" Type="int" />
+          <Property Name="Internari" Type="text" />
+          <Property Name="Alergii" Type="text" />
+          <Property Name="Boli" Type="text" />
+          <Property Name="Retete" Type="text" />
+          <Property Name="Vaccinuri" Type="text" />
+          <Property Name="Diagnosticuri" Type="text" />
+        </EntityType>
+        <EntityType Name="Asistent">
+          <Key>
+            <PropertyRef Name="id_Asistent" />
+          </Key>
+          <Property Name="id_Asistent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Medic" Type="int" />
+          <Property Name="id_Utilizator" Type="int" />
+        </EntityType>
+        <EntityType Name="Boli">
+          <Key>
+            <PropertyRef Name="id_Boala" />
+          </Key>
+          <Property Name="id_Boala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tip" Type="varchar" MaxLength="15" />
+          <Property Name="DataBoala" Type="date" />
+          <Property Name="Denumire" Type="varchar" MaxLength="50" />
+          <Property Name="id_FisaMedicala" Type="int" />
+        </EntityType>
+        <EntityType Name="DatePersonale">
+          <Key>
+            <PropertyRef Name="id_DatePersonale" />
+          </Key>
+          <Property Name="id_DatePersonale" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CNP" Type="varchar" MaxLength="13" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="varchar" MaxLength="10" />
+          <Property Name="Varsta" Type="int" />
+          <Property Name="Sex" Type="varchar" MaxLength="1" />
+          <Property Name="Adresa" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Diagnostic">
+          <Key>
+            <PropertyRef Name="id_Diagnostic" />
+          </Key>
+          <Property Name="id_Diagnostic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Programare" Type="int" />
+          <Property Name="Descriere" Type="text" />
+        </EntityType>
+        <EntityType Name="FisaMedicala">
+          <Key>
+            <PropertyRef Name="id_FisaMedicala" />
+          </Key>
+          <Property Name="id_FisaMedicala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataFisa" Type="date" />
+          <Property Name="Contraindicatii" Type="text" />
+          <Property Name="UltimulControl" Type="date" />
+        </EntityType>
+        <EntityType Name="Internari">
+          <Key>
+            <PropertyRef Name="id_Internare" />
+          </Key>
+          <Property Name="id_Internare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Motiv" Type="varchar" MaxLength="100" />
+          <Property Name="DataInternarii" Type="date" />
+          <Property Name="DataExternarii" Type="date" />
+          <Property Name="Observatii" Type="varchar" MaxLength="200" />
+          <Property Name="id_FisaMedicala" Type="int" />
+        </EntityType>
+        <EntityType Name="Istoric">
+          <Key>
+            <PropertyRef Name="id_Istoric" />
+          </Key>
+          <Property Name="id_Istoric" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipObiect" Type="varchar" MaxLength="20" />
+          <Property Name="IdObiect" Type="int" />
+          <Property Name="DataModificarii" Type="datetime" />
+          <Property Name="ValoareVeche" Type="varchar" MaxLength="200" />
+          <Property Name="ValoareNoua" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Medic">
+          <Key>
+            <PropertyRef Name="id_Medic" />
+          </Key>
+          <Property Name="id_Medic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Utilizator" Type="int" />
+        </EntityType>
+        <EntityType Name="Medicamente">
+          <Key>
+            <PropertyRef Name="id_Medicament" />
+          </Key>
+          <Property Name="id_Medicament" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="20" />
+          <Property Name="Cantitate" Type="int" />
+          <Property Name="Administrare" Type="varchar" MaxLength="50" />
+          <Property Name="id_Reteta" Type="int" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="id_Pacient" />
+          </Key>
+          <Property Name="id_Pacient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Medic" Type="int" />
+          <Property Name="id_FisaMedicala" Type="int" />
+          <Property Name="id_Utilizator" Type="int" />
+        </EntityType>
+        <EntityType Name="Programari">
+          <Key>
+            <PropertyRef Name="id_Programare" />
+          </Key>
+          <Property Name="id_Programare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataOraEfectuare" Type="datetime" />
+          <Property Name="StatusProgramare" Type="varchar" MaxLength="10" />
+          <Property Name="DataConsultatiei" Type="datetime" />
+          <Property Name="DataModificarii" Type="datetime" />
+          <Property Name="id_Pacient" Type="int" />
+          <Property Name="id_Asistent" Type="int" />
+          <Property Name="id_Medic" Type="int" />
+        </EntityType>
+        <EntityType Name="Retete">
+          <Key>
+            <PropertyRef Name="id_Reteta" />
+          </Key>
+          <Property Name="id_Reteta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Durata" Type="varchar" MaxLength="20" />
+          <Property Name="Tip" Type="varchar" MaxLength="100" />
+          <Property Name="id_FisaMedicala" Type="int" />
+        </EntityType>
+        <EntityType Name="Utilizator">
+          <Key>
+            <PropertyRef Name="id_Utilizator" />
+          </Key>
+          <Property Name="id_Utilizator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodUtilizator" Type="varchar" MaxLength="20" />
+          <Property Name="Nume" Type="varchar" MaxLength="30" />
+          <Property Name="Prenume" Type="varchar" MaxLength="30" />
+          <Property Name="DataCreare" Type="datetime" />
+          <Property Name="Functie" Type="varchar" MaxLength="20" />
+          <Property Name="Parola" Type="varchar" MaxLength="100" />
+          <Property Name="id_DatePersonale" Type="int" />
+        </EntityType>
+        <EntityType Name="Vaccinuri">
+          <Key>
+            <PropertyRef Name="id_Vaccin" />
+          </Key>
+          <Property Name="id_Vaccin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataVaccin" Type="date" />
+          <Property Name="Tip" Type="varchar" MaxLength="20" />
+          <Property Name="id_FisaMedicala" Type="int" />
+        </EntityType>
+        <Association Name="FK__Administr__id_Ut__2B3F6F97">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="id_Utilizator" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="id_Utilizator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Alergii__id_Fisa__48CFD27E">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Alergii" Type="Self.Alergii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Alergii">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Arhiva__id_FisaM__5DCAEF64">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Arhiva" Type="Self.Arhiva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Arhiva">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistent__id_Med__32E0915F">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medic">
+              <PropertyRef Name="id_Medic" />
+            </Principal>
+            <Dependent Role="Asistent">
+              <PropertyRef Name="id_Medic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistent__id_Uti__33D4B598">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="id_Utilizator" />
+            </Principal>
+            <Dependent Role="Asistent">
+              <PropertyRef Name="id_Utilizator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Boli__id_FisaMed__571DF1D5">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Boli" Type="Self.Boli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Boli">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diagnosti__id_Pr__45F365D3">
+          <End Role="Programari" Type="Self.Programari" Multiplicity="0..1" />
+          <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programari">
+              <PropertyRef Name="id_Programare" />
+            </Principal>
+            <Dependent Role="Diagnostic">
+              <PropertyRef Name="id_Programare" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Internari__id_Fi__59FA5E80">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Internari" Type="Self.Internari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Internari">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Medic__id_Utiliz__2F10007B">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Medic" Type="Self.Medic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="id_Utilizator" />
+            </Principal>
+            <Dependent Role="Medic">
+              <PropertyRef Name="id_Utilizator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Medicamen__id_Re__5165187F">
+          <End Role="Retete" Type="Self.Retete" Multiplicity="0..1" />
+          <End Role="Medicamente" Type="Self.Medicamente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Retete">
+              <PropertyRef Name="id_Reteta" />
+            </Principal>
+            <Dependent Role="Medicamente">
+              <PropertyRef Name="id_Reteta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pacient__id_Fisa__3C69FB99">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pacient__id_Medi__3B75D760">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medic">
+              <PropertyRef Name="id_Medic" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Medic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pacient__id_Util__3D5E1FD2">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizator">
+              <PropertyRef Name="id_Utilizator" />
+            </Principal>
+            <Dependent Role="Pacient">
+              <PropertyRef Name="id_Utilizator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programar__id_As__412EB0B6">
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asistent">
+              <PropertyRef Name="id_Asistent" />
+            </Principal>
+            <Dependent Role="Programari">
+              <PropertyRef Name="id_Asistent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programar__id_Me__4222D4EF">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medic">
+              <PropertyRef Name="id_Medic" />
+            </Principal>
+            <Dependent Role="Programari">
+              <PropertyRef Name="id_Medic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programar__id_Pa__403A8C7D">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacient">
+              <PropertyRef Name="id_Pacient" />
+            </Principal>
+            <Dependent Role="Programari">
+              <PropertyRef Name="id_Pacient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Retete__id_FisaM__4E88ABD4">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Retete" Type="Self.Retete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Retete">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Utilizato__id_Da__276EDEB3">
+          <End Role="DatePersonale" Type="Self.DatePersonale" Multiplicity="0..1" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatePersonale">
+              <PropertyRef Name="id_DatePersonale" />
+            </Principal>
+            <Dependent Role="Utilizator">
+              <PropertyRef Name="id_DatePersonale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vaccinuri__id_Fi__4BAC3F29">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Vaccinuri" Type="Self.Vaccinuri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FisaMedicala">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Principal>
+            <Dependent Role="Vaccinuri">
+              <PropertyRef Name="id_FisaMedicala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProiectColectivModelStoreContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alergii" EntityType="Self.Alergii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arhiva" EntityType="Self.Arhiva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asistent" EntityType="Self.Asistent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boli" EntityType="Self.Boli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatePersonale" EntityType="Self.DatePersonale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FisaMedicala" EntityType="Self.FisaMedicala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Internari" EntityType="Self.Internari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Istoric" EntityType="Self.Istoric" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medic" EntityType="Self.Medic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamente" EntityType="Self.Medicamente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacient" EntityType="Self.Pacient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programari" EntityType="Self.Programari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Retete" EntityType="Self.Retete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizator" EntityType="Self.Utilizator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaccinuri" EntityType="Self.Vaccinuri" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Administr__id_Ut__2B3F6F97" Association="Self.FK__Administr__id_Ut__2B3F6F97">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alergii__id_Fisa__48CFD27E" Association="Self.FK__Alergii__id_Fisa__48CFD27E">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Alergii" EntitySet="Alergii" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Arhiva__id_FisaM__5DCAEF64" Association="Self.FK__Arhiva__id_FisaM__5DCAEF64">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Arhiva" EntitySet="Arhiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistent__id_Med__32E0915F" Association="Self.FK__Asistent__id_Med__32E0915F">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Asistent" EntitySet="Asistent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistent__id_Uti__33D4B598" Association="Self.FK__Asistent__id_Uti__33D4B598">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Asistent" EntitySet="Asistent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Boli__id_FisaMed__571DF1D5" Association="Self.FK__Boli__id_FisaMed__571DF1D5">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Boli" EntitySet="Boli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diagnosti__id_Pr__45F365D3" Association="Self.FK__Diagnosti__id_Pr__45F365D3">
+            <End Role="Programari" EntitySet="Programari" />
+            <End Role="Diagnostic" EntitySet="Diagnostic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Internari__id_Fi__59FA5E80" Association="Self.FK__Internari__id_Fi__59FA5E80">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Internari" EntitySet="Internari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Medic__id_Utiliz__2F10007B" Association="Self.FK__Medic__id_Utiliz__2F10007B">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Medic" EntitySet="Medic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Medicamen__id_Re__5165187F" Association="Self.FK__Medicamen__id_Re__5165187F">
+            <End Role="Retete" EntitySet="Retete" />
+            <End Role="Medicamente" EntitySet="Medicamente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Fisa__3C69FB99" Association="Self.FK__Pacient__id_Fisa__3C69FB99">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Medi__3B75D760" Association="Self.FK__Pacient__id_Medi__3B75D760">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Util__3D5E1FD2" Association="Self.FK__Pacient__id_Util__3D5E1FD2">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_As__412EB0B6" Association="Self.FK__Programar__id_As__412EB0B6">
+            <End Role="Asistent" EntitySet="Asistent" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_Me__4222D4EF" Association="Self.FK__Programar__id_Me__4222D4EF">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_Pa__403A8C7D" Association="Self.FK__Programar__id_Pa__403A8C7D">
+            <End Role="Pacient" EntitySet="Pacient" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Retete__id_FisaM__4E88ABD4" Association="Self.FK__Retete__id_FisaM__4E88ABD4">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Retete" EntitySet="Retete" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Utilizato__id_Da__276EDEB3" Association="Self.FK__Utilizato__id_Da__276EDEB3">
+            <End Role="DatePersonale" EntitySet="DatePersonale" />
+            <End Role="Utilizator" EntitySet="Utilizator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinuri__id_Fi__4BAC3F29" Association="Self.FK__Vaccinuri__id_Fi__4BAC3F29">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Vaccinuri" EntitySet="Vaccinuri" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProiectColectivModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="id_Administrator" />
+          </Key>
+          <Property Name="id_Administrator" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK__Administr__id_Ut__2B3F6F97" FromRole="Administrator" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Alergii">
+          <Key>
+            <PropertyRef Name="id_Alergie" />
+          </Key>
+          <Property Name="id_Alergie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Alergii__id_Fisa__48CFD27E" FromRole="Alergii" ToRole="FisaMedicala" />
+        </EntityType>
+        <EntityType Name="Arhiva">
+          <Key>
+            <PropertyRef Name="id_Arhiva" />
+          </Key>
+          <Property Name="id_Arhiva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Internari" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Alergii" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Boli" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Retete" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Vaccinuri" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnosticuri" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Arhiva__id_FisaM__5DCAEF64" FromRole="Arhiva" ToRole="FisaMedicala" />
+        </EntityType>
+        <EntityType Name="Asistent">
+          <Key>
+            <PropertyRef Name="id_Asistent" />
+          </Key>
+          <Property Name="id_Asistent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Medic" Relationship="Self.FK__Asistent__id_Med__32E0915F" FromRole="Asistent" ToRole="Medic" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK__Asistent__id_Uti__33D4B598" FromRole="Asistent" ToRole="Utilizator" />
+          <NavigationProperty Name="Programari" Relationship="Self.FK__Programar__id_As__412EB0B6" FromRole="Asistent" ToRole="Programari" />
+        </EntityType>
+        <EntityType Name="Boli">
+          <Key>
+            <PropertyRef Name="id_Boala" />
+          </Key>
+          <Property Name="id_Boala" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DataBoala" Type="DateTime" Precision="0" />
+          <Property Name="Denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Boli__id_FisaMed__571DF1D5" FromRole="Boli" ToRole="FisaMedicala" />
+        </EntityType>
+        <EntityType Name="DatePersonale">
+          <Key>
+            <PropertyRef Name="id_DatePersonale" />
+          </Key>
+          <Property Name="id_DatePersonale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CNP" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Varsta" Type="Int32" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Adresa" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK__Utilizato__id_Da__276EDEB3" FromRole="DatePersonale" ToRole="Utilizator" />
+        </EntityType>
+        <EntityType Name="Diagnostic">
+          <Key>
+            <PropertyRef Name="id_Diagnostic" />
+          </Key>
+          <Property Name="id_Diagnostic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Programari" Relationship="Self.FK__Diagnosti__id_Pr__45F365D3" FromRole="Diagnostic" ToRole="Programari" />
+        </EntityType>
+        <EntityType Name="FisaMedicala">
+          <Key>
+            <PropertyRef Name="id_FisaMedicala" />
+          </Key>
+          <Property Name="id_FisaMedicala" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataFisa" Type="DateTime" Precision="0" />
+          <Property Name="Contraindicatii" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UltimulControl" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Alergii" Relationship="Self.FK__Alergii__id_Fisa__48CFD27E" FromRole="FisaMedicala" ToRole="Alergii" />
+          <NavigationProperty Name="Arhiva" Relationship="Self.FK__Arhiva__id_FisaM__5DCAEF64" FromRole="FisaMedicala" ToRole="Arhiva" />
+          <NavigationProperty Name="Boli" Relationship="Self.FK__Boli__id_FisaMed__571DF1D5" FromRole="FisaMedicala" ToRole="Boli" />
+          <NavigationProperty Name="Internari" Relationship="Self.FK__Internari__id_Fi__59FA5E80" FromRole="FisaMedicala" ToRole="Internari" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK__Pacient__id_Fisa__3C69FB99" FromRole="FisaMedicala" ToRole="Pacient" />
+          <NavigationProperty Name="Retete" Relationship="Self.FK__Retete__id_FisaM__4E88ABD4" FromRole="FisaMedicala" ToRole="Retete" />
+          <NavigationProperty Name="Vaccinuri" Relationship="Self.FK__Vaccinuri__id_Fi__4BAC3F29" FromRole="FisaMedicala" ToRole="Vaccinuri" />
+        </EntityType>
+        <EntityType Name="Internari">
+          <Key>
+            <PropertyRef Name="id_Internare" />
+          </Key>
+          <Property Name="id_Internare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Motiv" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DataInternarii" Type="DateTime" Precision="0" />
+          <Property Name="DataExternarii" Type="DateTime" Precision="0" />
+          <Property Name="Observatii" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Internari__id_Fi__59FA5E80" FromRole="Internari" ToRole="FisaMedicala" />
+        </EntityType>
+        <EntityType Name="Istoric">
+          <Key>
+            <PropertyRef Name="id_Istoric" />
+          </Key>
+          <Property Name="id_Istoric" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipObiect" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdObiect" Type="Int32" />
+          <Property Name="DataModificarii" Type="DateTime" Precision="3" />
+          <Property Name="ValoareVeche" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValoareNoua" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Medic">
+          <Key>
+            <PropertyRef Name="id_Medic" />
+          </Key>
+          <Property Name="id_Medic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Asistent" Relationship="Self.FK__Asistent__id_Med__32E0915F" FromRole="Medic" ToRole="Asistent" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK__Medic__id_Utiliz__2F10007B" FromRole="Medic" ToRole="Utilizator" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK__Pacient__id_Medi__3B75D760" FromRole="Medic" ToRole="Pacient" />
+          <NavigationProperty Name="Programari" Relationship="Self.FK__Programar__id_Me__4222D4EF" FromRole="Medic" ToRole="Programari" />
+        </EntityType>
+        <EntityType Name="Medicamente">
+          <Key>
+            <PropertyRef Name="id_Medicament" />
+          </Key>
+          <Property Name="id_Medicament" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Cantitate" Type="Int32" />
+          <Property Name="Administrare" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Retete" Relationship="Self.FK__Medicamen__id_Re__5165187F" FromRole="Medicamente" ToRole="Retete" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="id_Pacient" />
+          </Key>
+          <Property Name="id_Pacient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Pacient__id_Fisa__3C69FB99" FromRole="Pacient" ToRole="FisaMedicala" />
+          <NavigationProperty Name="Medic" Relationship="Self.FK__Pacient__id_Medi__3B75D760" FromRole="Pacient" ToRole="Medic" />
+          <NavigationProperty Name="Utilizator" Relationship="Self.FK__Pacient__id_Util__3D5E1FD2" FromRole="Pacient" ToRole="Utilizator" />
+          <NavigationProperty Name="Programari" Relationship="Self.FK__Programar__id_Pa__403A8C7D" FromRole="Pacient" ToRole="Programari" />
+        </EntityType>
+        <EntityType Name="Programari">
+          <Key>
+            <PropertyRef Name="id_Programare" />
+          </Key>
+          <Property Name="id_Programare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataOraEfectuare" Type="DateTime" Precision="3" />
+          <Property Name="StatusProgramare" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DataConsultatiei" Type="DateTime" Precision="3" />
+          <Property Name="DataModificarii" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Asistent" Relationship="Self.FK__Programar__id_As__412EB0B6" FromRole="Programari" ToRole="Asistent" />
+          <NavigationProperty Name="Diagnostic" Relationship="Self.FK__Diagnosti__id_Pr__45F365D3" FromRole="Programari" ToRole="Diagnostic" />
+          <NavigationProperty Name="Medic" Relationship="Self.FK__Programar__id_Me__4222D4EF" FromRole="Programari" ToRole="Medic" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK__Programar__id_Pa__403A8C7D" FromRole="Programari" ToRole="Pacient" />
+        </EntityType>
+        <EntityType Name="Retete">
+          <Key>
+            <PropertyRef Name="id_Reteta" />
+          </Key>
+          <Property Name="id_Reteta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Durata" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Retete__id_FisaM__4E88ABD4" FromRole="Retete" ToRole="FisaMedicala" />
+          <NavigationProperty Name="Medicamente" Relationship="Self.FK__Medicamen__id_Re__5165187F" FromRole="Retete" ToRole="Medicamente" />
+        </EntityType>
+        <EntityType Name="Utilizator">
+          <Key>
+            <PropertyRef Name="id_Utilizator" />
+          </Key>
+          <Property Name="id_Utilizator" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodUtilizator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nume" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Prenume" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DataCreare" Type="DateTime" Precision="3" />
+          <Property Name="Functie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Parola" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK__Administr__id_Ut__2B3F6F97" FromRole="Utilizator" ToRole="Administrator" />
+          <NavigationProperty Name="Asistent" Relationship="Self.FK__Asistent__id_Uti__33D4B598" FromRole="Utilizator" ToRole="Asistent" />
+          <NavigationProperty Name="DatePersonale" Relationship="Self.FK__Utilizato__id_Da__276EDEB3" FromRole="Utilizator" ToRole="DatePersonale" />
+          <NavigationProperty Name="Medic" Relationship="Self.FK__Medic__id_Utiliz__2F10007B" FromRole="Utilizator" ToRole="Medic" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK__Pacient__id_Util__3D5E1FD2" FromRole="Utilizator" ToRole="Pacient" />
+        </EntityType>
+        <EntityType Name="Vaccinuri">
+          <Key>
+            <PropertyRef Name="id_Vaccin" />
+          </Key>
+          <Property Name="id_Vaccin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataVaccin" Type="DateTime" Precision="0" />
+          <Property Name="Tip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FisaMedicala" Relationship="Self.FK__Vaccinuri__id_Fi__4BAC3F29" FromRole="Vaccinuri" ToRole="FisaMedicala" />
+        </EntityType>
+        <Association Name="FK__Administr__id_Ut__2B3F6F97">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Alergii__id_Fisa__48CFD27E">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Alergii" Type="Self.Alergii" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Arhiva__id_FisaM__5DCAEF64">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Arhiva" Type="Self.Arhiva" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Asistent__id_Med__32E0915F">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Asistent__id_Uti__33D4B598">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Programar__id_As__412EB0B6">
+          <End Role="Asistent" Type="Self.Asistent" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Boli__id_FisaMed__571DF1D5">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Boli" Type="Self.Boli" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Utilizato__id_Da__276EDEB3">
+          <End Role="DatePersonale" Type="Self.DatePersonale" Multiplicity="0..1" />
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Diagnosti__id_Pr__45F365D3">
+          <End Role="Programari" Type="Self.Programari" Multiplicity="0..1" />
+          <End Role="Diagnostic" Type="Self.Diagnostic" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Internari__id_Fi__59FA5E80">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Internari" Type="Self.Internari" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Pacient__id_Fisa__3C69FB99">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Retete__id_FisaM__4E88ABD4">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Retete" Type="Self.Retete" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Vaccinuri__id_Fi__4BAC3F29">
+          <End Role="FisaMedicala" Type="Self.FisaMedicala" Multiplicity="0..1" />
+          <End Role="Vaccinuri" Type="Self.Vaccinuri" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Medic__id_Utiliz__2F10007B">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Medic" Type="Self.Medic" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Pacient__id_Medi__3B75D760">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Programar__id_Me__4222D4EF">
+          <End Role="Medic" Type="Self.Medic" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Medicamen__id_Re__5165187F">
+          <End Role="Retete" Type="Self.Retete" Multiplicity="0..1" />
+          <End Role="Medicamente" Type="Self.Medicamente" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Pacient__id_Util__3D5E1FD2">
+          <End Role="Utilizator" Type="Self.Utilizator" Multiplicity="0..1" />
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Programar__id_Pa__403A8C7D">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="0..1" />
+          <End Role="Programari" Type="Self.Programari" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ProiectColectivEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Alergii" EntityType="Self.Alergii" />
+          <EntitySet Name="Arhiva" EntityType="Self.Arhiva" />
+          <EntitySet Name="Asistent" EntityType="Self.Asistent" />
+          <EntitySet Name="Boli" EntityType="Self.Boli" />
+          <EntitySet Name="DatePersonale" EntityType="Self.DatePersonale" />
+          <EntitySet Name="Diagnostic" EntityType="Self.Diagnostic" />
+          <EntitySet Name="FisaMedicala" EntityType="Self.FisaMedicala" />
+          <EntitySet Name="Internari" EntityType="Self.Internari" />
+          <EntitySet Name="Istoric" EntityType="Self.Istoric" />
+          <EntitySet Name="Medic" EntityType="Self.Medic" />
+          <EntitySet Name="Medicamente" EntityType="Self.Medicamente" />
+          <EntitySet Name="Pacient" EntityType="Self.Pacient" />
+          <EntitySet Name="Programari" EntityType="Self.Programari" />
+          <EntitySet Name="Retete" EntityType="Self.Retete" />
+          <EntitySet Name="Utilizator" EntityType="Self.Utilizator" />
+          <EntitySet Name="Vaccinuri" EntityType="Self.Vaccinuri" />
+          <AssociationSet Name="FK__Administr__id_Ut__2B3F6F97" Association="Self.FK__Administr__id_Ut__2B3F6F97">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Alergii__id_Fisa__48CFD27E" Association="Self.FK__Alergii__id_Fisa__48CFD27E">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Alergii" EntitySet="Alergii" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Arhiva__id_FisaM__5DCAEF64" Association="Self.FK__Arhiva__id_FisaM__5DCAEF64">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Arhiva" EntitySet="Arhiva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistent__id_Med__32E0915F" Association="Self.FK__Asistent__id_Med__32E0915F">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Asistent" EntitySet="Asistent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistent__id_Uti__33D4B598" Association="Self.FK__Asistent__id_Uti__33D4B598">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Asistent" EntitySet="Asistent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_As__412EB0B6" Association="Self.FK__Programar__id_As__412EB0B6">
+            <End Role="Asistent" EntitySet="Asistent" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Boli__id_FisaMed__571DF1D5" Association="Self.FK__Boli__id_FisaMed__571DF1D5">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Boli" EntitySet="Boli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Utilizato__id_Da__276EDEB3" Association="Self.FK__Utilizato__id_Da__276EDEB3">
+            <End Role="DatePersonale" EntitySet="DatePersonale" />
+            <End Role="Utilizator" EntitySet="Utilizator" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diagnosti__id_Pr__45F365D3" Association="Self.FK__Diagnosti__id_Pr__45F365D3">
+            <End Role="Programari" EntitySet="Programari" />
+            <End Role="Diagnostic" EntitySet="Diagnostic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Internari__id_Fi__59FA5E80" Association="Self.FK__Internari__id_Fi__59FA5E80">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Internari" EntitySet="Internari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Fisa__3C69FB99" Association="Self.FK__Pacient__id_Fisa__3C69FB99">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Retete__id_FisaM__4E88ABD4" Association="Self.FK__Retete__id_FisaM__4E88ABD4">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Retete" EntitySet="Retete" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vaccinuri__id_Fi__4BAC3F29" Association="Self.FK__Vaccinuri__id_Fi__4BAC3F29">
+            <End Role="FisaMedicala" EntitySet="FisaMedicala" />
+            <End Role="Vaccinuri" EntitySet="Vaccinuri" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Medic__id_Utiliz__2F10007B" Association="Self.FK__Medic__id_Utiliz__2F10007B">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Medic" EntitySet="Medic" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Medi__3B75D760" Association="Self.FK__Pacient__id_Medi__3B75D760">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_Me__4222D4EF" Association="Self.FK__Programar__id_Me__4222D4EF">
+            <End Role="Medic" EntitySet="Medic" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Medicamen__id_Re__5165187F" Association="Self.FK__Medicamen__id_Re__5165187F">
+            <End Role="Retete" EntitySet="Retete" />
+            <End Role="Medicamente" EntitySet="Medicamente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pacient__id_Util__3D5E1FD2" Association="Self.FK__Pacient__id_Util__3D5E1FD2">
+            <End Role="Utilizator" EntitySet="Utilizator" />
+            <End Role="Pacient" EntitySet="Pacient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programar__id_Pa__403A8C7D" Association="Self.FK__Programar__id_Pa__403A8C7D">
+            <End Role="Pacient" EntitySet="Pacient" />
+            <End Role="Programari" EntitySet="Programari" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProiectColectivModelStoreContainer" CdmEntityContainer="ProiectColectivEntities">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="id_Administrator" ColumnName="id_Administrator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alergii">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Alergii">
+              <MappingFragment StoreEntitySet="Alergii">
+                <ScalarProperty Name="id_Alergie" ColumnName="id_Alergie" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arhiva">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Arhiva">
+              <MappingFragment StoreEntitySet="Arhiva">
+                <ScalarProperty Name="id_Arhiva" ColumnName="id_Arhiva" />
+                <ScalarProperty Name="Internari" ColumnName="Internari" />
+                <ScalarProperty Name="Alergii" ColumnName="Alergii" />
+                <ScalarProperty Name="Boli" ColumnName="Boli" />
+                <ScalarProperty Name="Retete" ColumnName="Retete" />
+                <ScalarProperty Name="Vaccinuri" ColumnName="Vaccinuri" />
+                <ScalarProperty Name="Diagnosticuri" ColumnName="Diagnosticuri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asistent">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Asistent">
+              <MappingFragment StoreEntitySet="Asistent">
+                <ScalarProperty Name="id_Asistent" ColumnName="id_Asistent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boli">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Boli">
+              <MappingFragment StoreEntitySet="Boli">
+                <ScalarProperty Name="id_Boala" ColumnName="id_Boala" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="DataBoala" ColumnName="DataBoala" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatePersonale">
+            <EntityTypeMapping TypeName="ProiectColectivModel.DatePersonale">
+              <MappingFragment StoreEntitySet="DatePersonale">
+                <ScalarProperty Name="id_DatePersonale" ColumnName="id_DatePersonale" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Varsta" ColumnName="Varsta" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diagnostic">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Diagnostic">
+              <MappingFragment StoreEntitySet="Diagnostic">
+                <ScalarProperty Name="id_Diagnostic" ColumnName="id_Diagnostic" />
+                <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FisaMedicala">
+            <EntityTypeMapping TypeName="ProiectColectivModel.FisaMedicala">
+              <MappingFragment StoreEntitySet="FisaMedicala">
+                <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+                <ScalarProperty Name="DataFisa" ColumnName="DataFisa" />
+                <ScalarProperty Name="Contraindicatii" ColumnName="Contraindicatii" />
+                <ScalarProperty Name="UltimulControl" ColumnName="UltimulControl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Internari">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Internari">
+              <MappingFragment StoreEntitySet="Internari">
+                <ScalarProperty Name="id_Internare" ColumnName="id_Internare" />
+                <ScalarProperty Name="Motiv" ColumnName="Motiv" />
+                <ScalarProperty Name="DataInternarii" ColumnName="DataInternarii" />
+                <ScalarProperty Name="DataExternarii" ColumnName="DataExternarii" />
+                <ScalarProperty Name="Observatii" ColumnName="Observatii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Istoric">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Istoric">
+              <MappingFragment StoreEntitySet="Istoric">
+                <ScalarProperty Name="id_Istoric" ColumnName="id_Istoric" />
+                <ScalarProperty Name="TipObiect" ColumnName="TipObiect" />
+                <ScalarProperty Name="IdObiect" ColumnName="IdObiect" />
+                <ScalarProperty Name="DataModificarii" ColumnName="DataModificarii" />
+                <ScalarProperty Name="ValoareVeche" ColumnName="ValoareVeche" />
+                <ScalarProperty Name="ValoareNoua" ColumnName="ValoareNoua" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medic">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Medic">
+              <MappingFragment StoreEntitySet="Medic">
+                <ScalarProperty Name="id_Medic" ColumnName="id_Medic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamente">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Medicamente">
+              <MappingFragment StoreEntitySet="Medicamente">
+                <ScalarProperty Name="id_Medicament" ColumnName="id_Medicament" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Cantitate" ColumnName="Cantitate" />
+                <ScalarProperty Name="Administrare" ColumnName="Administrare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacient">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Pacient">
+              <MappingFragment StoreEntitySet="Pacient">
+                <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programari">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Programari">
+              <MappingFragment StoreEntitySet="Programari">
+                <ScalarProperty Name="id_Programare" ColumnName="id_Programare" />
+                <ScalarProperty Name="DataOraEfectuare" ColumnName="DataOraEfectuare" />
+                <ScalarProperty Name="StatusProgramare" ColumnName="StatusProgramare" />
+                <ScalarProperty Name="DataConsultatiei" ColumnName="DataConsultatiei" />
+                <ScalarProperty Name="DataModificarii" ColumnName="DataModificarii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Retete">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Retete">
+              <MappingFragment StoreEntitySet="Retete">
+                <ScalarProperty Name="id_Reteta" ColumnName="id_Reteta" />
+                <ScalarProperty Name="Durata" ColumnName="Durata" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizator">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Utilizator">
+              <MappingFragment StoreEntitySet="Utilizator">
+                <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+                <ScalarProperty Name="CodUtilizator" ColumnName="CodUtilizator" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+                <ScalarProperty Name="DataCreare" ColumnName="DataCreare" />
+                <ScalarProperty Name="Functie" ColumnName="Functie" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccinuri">
+            <EntityTypeMapping TypeName="ProiectColectivModel.Vaccinuri">
+              <MappingFragment StoreEntitySet="Vaccinuri">
+                <ScalarProperty Name="id_Vaccin" ColumnName="id_Vaccin" />
+                <ScalarProperty Name="DataVaccin" ColumnName="DataVaccin" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__Administr__id_Ut__2B3F6F97" TypeName="ProiectColectivModel.FK__Administr__id_Ut__2B3F6F97" StoreEntitySet="Administrator">
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+            </EndProperty>
+            <EndProperty Name="Administrator">
+              <ScalarProperty Name="id_Administrator" ColumnName="id_Administrator" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Utilizator" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Alergii__id_Fisa__48CFD27E" TypeName="ProiectColectivModel.FK__Alergii__id_Fisa__48CFD27E" StoreEntitySet="Alergii">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Alergii">
+              <ScalarProperty Name="id_Alergie" ColumnName="id_Alergie" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Arhiva__id_FisaM__5DCAEF64" TypeName="ProiectColectivModel.FK__Arhiva__id_FisaM__5DCAEF64" StoreEntitySet="Arhiva">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Arhiva">
+              <ScalarProperty Name="id_Arhiva" ColumnName="id_Arhiva" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Asistent__id_Med__32E0915F" TypeName="ProiectColectivModel.FK__Asistent__id_Med__32E0915F" StoreEntitySet="Asistent">
+            <EndProperty Name="Medic">
+              <ScalarProperty Name="id_Medic" ColumnName="id_Medic" />
+            </EndProperty>
+            <EndProperty Name="Asistent">
+              <ScalarProperty Name="id_Asistent" ColumnName="id_Asistent" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Medic" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Asistent__id_Uti__33D4B598" TypeName="ProiectColectivModel.FK__Asistent__id_Uti__33D4B598" StoreEntitySet="Asistent">
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+            </EndProperty>
+            <EndProperty Name="Asistent">
+              <ScalarProperty Name="id_Asistent" ColumnName="id_Asistent" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Utilizator" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Programar__id_As__412EB0B6" TypeName="ProiectColectivModel.FK__Programar__id_As__412EB0B6" StoreEntitySet="Programari">
+            <EndProperty Name="Asistent">
+              <ScalarProperty Name="id_Asistent" ColumnName="id_Asistent" />
+            </EndProperty>
+            <EndProperty Name="Programari">
+              <ScalarProperty Name="id_Programare" ColumnName="id_Programare" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Asistent" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Boli__id_FisaMed__571DF1D5" TypeName="ProiectColectivModel.FK__Boli__id_FisaMed__571DF1D5" StoreEntitySet="Boli">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Boli">
+              <ScalarProperty Name="id_Boala" ColumnName="id_Boala" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Utilizato__id_Da__276EDEB3" TypeName="ProiectColectivModel.FK__Utilizato__id_Da__276EDEB3" StoreEntitySet="Utilizator">
+            <EndProperty Name="DatePersonale">
+              <ScalarProperty Name="id_DatePersonale" ColumnName="id_DatePersonale" />
+            </EndProperty>
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_DatePersonale" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Diagnosti__id_Pr__45F365D3" TypeName="ProiectColectivModel.FK__Diagnosti__id_Pr__45F365D3" StoreEntitySet="Diagnostic">
+            <EndProperty Name="Programari">
+              <ScalarProperty Name="id_Programare" ColumnName="id_Programare" />
+            </EndProperty>
+            <EndProperty Name="Diagnostic">
+              <ScalarProperty Name="id_Diagnostic" ColumnName="id_Diagnostic" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Programare" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Internari__id_Fi__59FA5E80" TypeName="ProiectColectivModel.FK__Internari__id_Fi__59FA5E80" StoreEntitySet="Internari">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Internari">
+              <ScalarProperty Name="id_Internare" ColumnName="id_Internare" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Pacient__id_Fisa__3C69FB99" TypeName="ProiectColectivModel.FK__Pacient__id_Fisa__3C69FB99" StoreEntitySet="Pacient">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Pacient">
+              <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Retete__id_FisaM__4E88ABD4" TypeName="ProiectColectivModel.FK__Retete__id_FisaM__4E88ABD4" StoreEntitySet="Retete">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Retete">
+              <ScalarProperty Name="id_Reteta" ColumnName="id_Reteta" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Vaccinuri__id_Fi__4BAC3F29" TypeName="ProiectColectivModel.FK__Vaccinuri__id_Fi__4BAC3F29" StoreEntitySet="Vaccinuri">
+            <EndProperty Name="FisaMedicala">
+              <ScalarProperty Name="id_FisaMedicala" ColumnName="id_FisaMedicala" />
+            </EndProperty>
+            <EndProperty Name="Vaccinuri">
+              <ScalarProperty Name="id_Vaccin" ColumnName="id_Vaccin" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_FisaMedicala" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Medic__id_Utiliz__2F10007B" TypeName="ProiectColectivModel.FK__Medic__id_Utiliz__2F10007B" StoreEntitySet="Medic">
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+            </EndProperty>
+            <EndProperty Name="Medic">
+              <ScalarProperty Name="id_Medic" ColumnName="id_Medic" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Utilizator" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Pacient__id_Medi__3B75D760" TypeName="ProiectColectivModel.FK__Pacient__id_Medi__3B75D760" StoreEntitySet="Pacient">
+            <EndProperty Name="Medic">
+              <ScalarProperty Name="id_Medic" ColumnName="id_Medic" />
+            </EndProperty>
+            <EndProperty Name="Pacient">
+              <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Medic" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Programar__id_Me__4222D4EF" TypeName="ProiectColectivModel.FK__Programar__id_Me__4222D4EF" StoreEntitySet="Programari">
+            <EndProperty Name="Medic">
+              <ScalarProperty Name="id_Medic" ColumnName="id_Medic" />
+            </EndProperty>
+            <EndProperty Name="Programari">
+              <ScalarProperty Name="id_Programare" ColumnName="id_Programare" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Medic" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Medicamen__id_Re__5165187F" TypeName="ProiectColectivModel.FK__Medicamen__id_Re__5165187F" StoreEntitySet="Medicamente">
+            <EndProperty Name="Retete">
+              <ScalarProperty Name="id_Reteta" ColumnName="id_Reteta" />
+            </EndProperty>
+            <EndProperty Name="Medicamente">
+              <ScalarProperty Name="id_Medicament" ColumnName="id_Medicament" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Reteta" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Pacient__id_Util__3D5E1FD2" TypeName="ProiectColectivModel.FK__Pacient__id_Util__3D5E1FD2" StoreEntitySet="Pacient">
+            <EndProperty Name="Utilizator">
+              <ScalarProperty Name="id_Utilizator" ColumnName="id_Utilizator" />
+            </EndProperty>
+            <EndProperty Name="Pacient">
+              <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Utilizator" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Programar__id_Pa__403A8C7D" TypeName="ProiectColectivModel.FK__Programar__id_Pa__403A8C7D" StoreEntitySet="Programari">
+            <EndProperty Name="Pacient">
+              <ScalarProperty Name="id_Pacient" ColumnName="id_Pacient" />
+            </EndProperty>
+            <EndProperty Name="Programari">
+              <ScalarProperty Name="id_Programare" ColumnName="id_Programare" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="id_Pacient" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
