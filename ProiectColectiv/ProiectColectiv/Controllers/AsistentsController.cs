@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProiectColectiv;
+using System.Data.SqlClient;
 
 namespace ProiectColectiv.Controllers
 {
@@ -44,7 +45,7 @@ namespace ProiectColectiv.Controllers
 
         public ActionResult ListaProgramari()
         {
-            return View();
+            return View(db.Programari.ToList());
         }
 
         public ActionResult ManagementPacienti()
