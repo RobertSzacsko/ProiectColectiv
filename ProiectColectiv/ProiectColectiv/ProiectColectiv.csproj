@@ -165,7 +165,7 @@
     <Compile Include="Boli.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsistentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacientController.cs" />
     <Compile Include="DatePersonale.cs">
@@ -282,16 +282,16 @@
     <Content Include="Views\Shared\_LayoutPacient.cshtml" />
     <Content Include="Views\Pacient\Index.cshtml" />
     <Content Include="Views\Pacient\IstoricFisa.cshtml" />
-    <Content Include="Views\Asistent\Programare.cshtml" />
-    <Content Include="Views\Asistent\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAsistent.cshtml" />
     <Content Include="Views\Pacient\Programare.cshtml" />
-    <Content Include="Views\Account\Create.cshtml" />
-    <Content Include="Views\Account\Delete.cshtml" />
-    <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Asistents\Create.cshtml" />
+    <Content Include="Views\Asistents\Delete.cshtml" />
+    <Content Include="Views\Asistents\Details.cshtml" />
+    <Content Include="Views\Asistents\Edit.cshtml" />
+    <Content Include="Views\Asistents\Index.cshtml" />
+    <Content Include="Views\Asistents\ListaProgramari.cshtml" />
+    <Content Include="Views\Asistents\ManagementPacienti.cshtml" />
+    <Content Include="Views\Asistents\PaginaPacienti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
