@@ -292,6 +292,7 @@
     <Content Include="Views\Asistents\ListaProgramari.cshtml" />
     <Content Include="Views\Asistents\ManagementPacienti.cshtml" />
     <Content Include="Views\Asistents\PaginaPacienti.cshtml" />
+    <Content Include="Views\Shared\_LayoutMedic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
