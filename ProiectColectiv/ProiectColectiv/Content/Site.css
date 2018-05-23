@@ -62,3 +62,18 @@ textarea {
     text-align: center;
     margin-bottom: 0;
 }
+@media (min-width: 992px) {
+    .logImg {
+        width: 100%;
+    }
+}
+.logImg {
+    display: block;
+    margin: auto;
+    
+}
+
+.vertAlign {
+    display: flex;
+    align-items: center;
+}

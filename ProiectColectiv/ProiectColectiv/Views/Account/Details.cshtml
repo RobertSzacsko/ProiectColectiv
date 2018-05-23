@@ -1,0 +1,66 @@
+﻿@model ProiectColectiv.Utilizator
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Utilizator</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodUtilizator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodUtilizator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCreare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCreare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Functie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Functie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parola)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parola)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Utilizator }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
