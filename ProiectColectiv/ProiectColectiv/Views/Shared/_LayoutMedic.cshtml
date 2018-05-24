@@ -6,6 +6,7 @@
     <title>Medic</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -25,8 +26,8 @@
                 @*Redenumeste actiuniile din controlller si creaza folder Asistent cu paginele specifiece*@
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Vizualizare Prog", "ListaProgramari", "Asistents")</li>
-                    <li>@Html.ActionLink("Management Prog", "PaginaProgramari", "Asistents")</li>
-                    <li>@Html.ActionLink("Managementul Pacientilor", "PaginaPacienti", "Asistents")</li>*@
+                        <li>@Html.ActionLink("Management Prog", "PaginaProgramari", "Asistents")</li>
+                        <li>@Html.ActionLink("Managementul Pacientilor", "PaginaPacienti", "Asistents")</li>*@
                 </ul>
             </div>
         </div>
@@ -43,8 +44,8 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/general-modal.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

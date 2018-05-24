@@ -11,12 +11,6 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 .red{
     background-color:red;
 }
@@ -88,7 +82,7 @@ textarea {
     background: -moz-linear-gradient(-135deg, #3973ac, #b3cce6);
     background: linear-gradient(-135deg, #3973ac, #b3cce6);
 }
-}
+
 
 /*card classes*/
 .row .card, .wrapper-status-bar {
@@ -121,4 +115,31 @@ textarea {
 }
 .informatii p{
     margin-bottom: 0;
+}
+
+.control-label.margin-top-20 {
+    margin-top: 20px;
+}
+
+/* modal classes*/
+.close-modal {
+    position: relative;
+    top: -10px;
+}
+
+.general-modal-succes, .general-modal-eroare {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.general-modal-succes {
+    color: darkgreen;
+}
+
+.general-modal-eroare {
+    color: darkred;
+}
+
+.general-modal {
+    text-align: center;
 }

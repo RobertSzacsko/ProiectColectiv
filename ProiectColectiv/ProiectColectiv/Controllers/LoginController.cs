@@ -73,13 +73,13 @@ namespace ProiectColectiv.Controllers
 
             if ((ut = VerificareUtilizator(ParolaCriptata, utilizator.CodUtilizator)) == null)
             {
-                return Content("You have to create an account");
+                return View("InvalidLogin");
             }
             else
             {
-                return View("You have logged in");
-                //Session["Utilizator"] = ut;
-                //return RedirectToAction("Index", ut.Functie.Replace(" ", ""));
+                //return View("You have logged in");
+                Session["Utilizator"] = ut;
+                return RedirectToAction("Index", ut.Functie.Replace(" ", ""));
                 // return RedirectToAction("Index", "Home");
 
             }

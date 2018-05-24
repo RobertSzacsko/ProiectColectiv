@@ -376,6 +376,7 @@
     <Content Include="Content\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Content\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\general-modal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -427,6 +428,10 @@
     <Content Include="Views\Medic\Edit.cshtml" />
     <Content Include="Views\Medic\Index.cshtml" />
     <Content Include="Views\Medic\VizualizareFisa.cshtml" />
+    <Content Include="Views\Medic\StabilireDiagnostic.cshtml" />
+    <Content Include="Views\Medic\GeneralModal.cshtml" />
+    <Content Include="Views\Login\InvalidLogin.cshtml" />
+    <Content Include="Views\Pacient\DatePersonale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

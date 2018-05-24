@@ -126,7 +126,7 @@ namespace ProiectColectiv.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult VizualizareFisa(int ?id)
+        public ActionResult VizualizareFisa(int? id)
         {
             if (id == null)
             {
@@ -138,6 +138,33 @@ namespace ProiectColectiv.Controllers
                 return HttpNotFound();
             }
             return View(fisa);
+        }
+
+        [ChildActionOnly]
+        public ActionResult StabilireDiagnostic()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult AddDiagnostic([Bind(Include = "id_Diagnostic,Descriere")] Diagnostic diagnostic)
+        {
+            ViewData["modal"] = 1;
+            var id = Convert.ToInt32(Request.RawUrl.Split('/').Last());
+            if (diagnostic.Descriere != null && id != 0)
+            {
+                diagnostic.Programari = db.Programari.Find(id);
+                db.Diagnostic.Add(diagnostic);
+                db.SaveChanges();
+                ViewData["Info"] = "Diagnosticul a fost salvat cu succes!";
+                ViewData["InfoClasses"] = "general-modal-succes";
+                
+                return PartialView("GeneralModal");
+            }
+            ViewData["Info"] = "A aparut o eroare! Te rog incearca din nou!";
+            ViewData["InfoClasses"] = "general-modal-eroare";
+
+            return PartialView("GeneralModal");
         }
 
         protected override void Dispose(bool disposing)
