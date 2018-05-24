@@ -107,9 +107,13 @@
 .full-height-container {
     min-height: calc(100vh - 51px);
 }
+.second-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
 /*general classes*/
-.informatii, .fisa-medicala{
+.informatii, .fisa-medicala {
     font-weight: 700;
     font-size: 1.2em;
 }

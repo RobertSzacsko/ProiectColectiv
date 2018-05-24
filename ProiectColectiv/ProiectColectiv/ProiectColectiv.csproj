@@ -194,6 +194,7 @@
     <Compile Include="Medicamente.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RetetaMedic.cs" />
     <Compile Include="Pacient.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>
@@ -432,10 +433,10 @@
     <Content Include="Views\Medic\GeneralModal.cshtml" />
     <Content Include="Views\Login\InvalidLogin.cshtml" />
     <Content Include="Views\Pacient\DatePersonale.cshtml" />
+    <Content Include="Views\Medic\EmitereReteta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -7,3 +7,8 @@
         $("form").attr("action", '/Medic/AddDiagnostic/' + id);
     });
 });
+
+JQuery("#AddM").click(function () {
+    console.log("dadasdasdasd");
+    //$("#forClone").clone().appendTo(this);
+});

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProiectColectiv;
+using ProiectColectiv.Models;
 
 namespace ProiectColectiv.Controllers
 {
@@ -165,6 +166,28 @@ namespace ProiectColectiv.Controllers
             ViewData["InfoClasses"] = "general-modal-eroare";
 
             return PartialView("GeneralModal");
+        }
+
+        [HttpGet]
+        public ActionResult EmitereReteta(int? id)
+        {
+            FisaMedicala fisaMedicala = db.FisaMedicala.Find(id);
+            if (id == null || fisaMedicala == null)
+            {
+                ViewData["Info"] = "A aparut o eroare! Te rog incearca din nou!";
+                ViewData["InfoClasses"] = "general-modal-eroare";
+
+                return PartialView("GeneralModal");
+            }
+            //aici ai id_fisa_medicala
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EmitereReteta([Bind(Include = "")] RetetaMedic re)
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

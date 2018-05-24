@@ -1,0 +1,81 @@
+﻿@model ProiectColectiv.Models.RetetaMedic
+
+@{
+    ViewBag.Title = "Emitere Reteta";
+    Layout = "~/Views/Shared/_LayoutMedic.cshtml";
+}
+
+<h2>Emitere Reteta</h2>
+
+<div class="second-container">
+    <div class="row margin">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card padding margin-bottom-10">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-horizontal">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Reteta.Tip, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Reteta.Tip, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Reteta.Tip, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Reteta.Durata, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Reteta.Durata, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Reteta.Durata, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <h4>Medicamente</h4>
+
+                        <div class="row margin">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card padding margin-bottom-10">
+                                    <div id="forClone">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="Medicamente_Nume">Nume</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Medicamente_Nume" name="Medicamente.Nume" type="text" value="">
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Nume" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="Medicamente_Cantitate">Cantitate</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Medicamente_Cantitate" name="Medicamente.Cantitate" type="text" value="">
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Cantitate" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="Medicamente_Administrare">Administrare</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Medicamente_Administrare" name="Medicamente.Administrare" type="text" value="">
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Administrare" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button id="AddM" type="button" class="btn btn-default" data-dismiss="modal">Adauga medicament</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Emite</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
