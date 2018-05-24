@@ -414,7 +414,7 @@
     <Content Include="Views\Asistents\Index.cshtml" />
     <Content Include="Views\Asistents\ListaProgramari.cshtml" />
     <Content Include="Views\Asistents\ManagementPacienti.cshtml" />
-    <Content Include="Views\Asistents\PaginaPacienti.cshtml" />
+    <Content Include="Views\Asistents\ManagementProgramari.cshtml" />
     <Content Include="Views\Shared\_LayoutMedic.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
