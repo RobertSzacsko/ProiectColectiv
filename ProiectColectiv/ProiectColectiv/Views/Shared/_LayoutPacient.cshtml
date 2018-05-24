@@ -23,6 +23,8 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Fisa medicala", "IstoricFisa", "Pacient")</li>
                 <li>@Html.ActionLink("Programare", "Programare", "Pacient")</li>
+                <li>@Html.ActionLink("Date personale", "DatePersonale", "Pacient")</li>
+                <li>@Html.ActionLink("Deconectare", "Logout", "Pacient")</li>
             </ul>
         </div>
     </div>
@@ -31,16 +33,17 @@
     <div class="container-wraper body-content">
         @RenderBody()
     </div>
+    <footer>
+        <div class="footer-wraper">
+            <div class="footer-content">
+                <p class="footer-p">&copy; @DateTime.Now.Year - Proiect Colectiv</p>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 
-<footer>
-    <div class="footer-wraper">
-        <div class="footer-content">
-            <p class="footer-p">&copy; @DateTime.Now.Year - Proiect Colectiv</p>
-        </div>
-    </div>
-</footer>
+
 </html>

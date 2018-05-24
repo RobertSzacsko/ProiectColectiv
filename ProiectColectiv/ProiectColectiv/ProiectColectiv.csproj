@@ -427,6 +427,8 @@
     <Content Include="Views\Medic\Edit.cshtml" />
     <Content Include="Views\Medic\Index.cshtml" />
     <Content Include="Views\Medic\VizualizareFisa.cshtml" />
+    <Content Include="Views\Login\InvalidLogin.cshtml" />
+    <Content Include="Views\Pacient\DatePersonale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,58 @@
+﻿@model ProiectColectiv.Pacient
+@{
+    ViewBag.Title = "DatePersonale";
+    Layout = "~/Views/Shared/_LayoutPacient.cshtml";
+}
+
+
+
+
+<div class="container">
+    <h2 style="text-align:center">Date Personale</h2>
+    <div class="row margin-card shadow-card">
+        <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+            <h3>Date personale</h3>
+            <div class="row margin-card shadow-card">
+
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Nume:</label>
+                    @Model.Utilizator.Nume
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Prenume:</label>
+                    @Model.Utilizator.Prenume
+                </div>
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Varsta:</label>
+                    @Model.Utilizator.DatePersonale.Varsta
+                </div>
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>CNP:</label>
+                    @Model.Utilizator.DatePersonale.CNP
+                </div>
+
+            </div>
+            <h3>Informatii de contact</h3>
+            <div class="row margin-card shadow-card">
+
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Nume:</label>
+                    @Model.Utilizator.DatePersonale.Adresa
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Nume:</label>
+                    @Model.Utilizator.DatePersonale.Email
+                </div>
+
+                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                    <label>Nume:</label>
+                    @Model.Utilizator.DatePersonale.Telefon
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
