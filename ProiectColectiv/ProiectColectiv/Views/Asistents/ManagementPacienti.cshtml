@@ -1,5 +1,45 @@
-﻿
+﻿@model ProiectColectiv.Pacient
+
 @{
-    ViewBag.Title = "ManagementPacienti";
+    ViewBag.Title = "Pacienti";
     Layout = "~/Views/Shared/_LayoutAsistent.cshtml";
+}
+
+<h2>Pacient</h2>
+<table>
+    <tr>
+        <td style="font-weight:600">
+            @Html.DisplayFor(model => model.Utilizator.Nume) @Html.DisplayFor(model => model.Utilizator.Prenume)
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.id_Pacient)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Utilizator.Nume, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Utilizator.Nume)
+                @Html.ValidationMessageFor(model => model.Utilizator.Nume, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Utilizator.Prenume, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Utilizator.Prenume)
+                @Html.ValidationMessageFor(model => model.Utilizator.Prenume, "", new { @class = "text-danger" })
+            </div>
+        </div>  
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

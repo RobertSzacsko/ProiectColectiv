@@ -58,6 +58,9 @@
                 @Html.DisplayFor(modelItem => item.Medic.Utilizator.Nume)
                 @Html.DisplayFor(modelItem => item.Medic.Utilizator.Prenume)
             </td>
+            <td>
+                @Html.ActionLink("Edit", "ManagementPacienti", new { id = item.Pacient.id_Pacient})
+            </td>
         </tr>
     }
 
