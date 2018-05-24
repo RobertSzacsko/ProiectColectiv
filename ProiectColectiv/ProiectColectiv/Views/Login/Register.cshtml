@@ -4,5 +4,114 @@
     Layout = "~/Views/Shared/_LayoutRegister.cshtml";
 }
 
-<h2>Register</h2>
+<h2 align="center">Register</h2><br />
+<div class="container">
+    <div class=" col-sm-12">
+        <form class="form-horizontal" method="post">
 
+            <div class="form-group">
+               @* <label class="control-label align-content-center" for="quantity"></label>*@
+                <div class="align-content-lg-center">
+
+                    <input type="text" maxlength="20" class="form-control" id="quantity" placeholder="Cod Utilizator" name="Cod Utilizator">
+                </div>
+            </div>
+
+            <div class="form-group">
+               @* <label class="control-label col-sm-2 text-left" for="name"></label>*@
+                <div class="align-content-lg-center">
+                    <input type="text" class="form-control" id="name" placeholder="Introduceti Nume" name="Nume">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="prenume"></label>
+                <div class="align-content-lg-center">
+                    <input type="text" class="form-control" id="prenume" placeholder="Introduceti prenume" name="prenume">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+               @* <label class="control-label col-sm-2" for="email"></label>*@
+                <div class="align-content-lg-center">
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+              @*  <label class="control-label col-sm-2" for="pwd">Parola:</label>*@
+                <div class="align-content-lg-center">
+                    <input type="password" class="form-control" id="pwd" placeholder="Parola" name="parola">
+
+                </div>
+            </div>
+            <div class="form-group">
+               @* <label class="control-label col-sm-2" for="confirm_pwd">Confirma Parola:</label>*@
+                <div class="align-content-lg-center">
+                    <input type="password" class="form-control" id="confirm_pwd" placeholder="Confirma parola" name="pwd">
+                    <span id="message"></span>
+                </div>
+            </div>
+            <div class="form-group">
+               @* <label class="control-label " for="varsta">Varsta:</label>*@
+                <div class="align-content-lg-center">
+                    <input type="number" min="18" class="form-control" id="varsta" placeholder="Varsta" name="varsta">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+               @* <label class="control-label col-sm-2" for="sex"></label>*@
+                <div class="col-sm-6">
+                    <label><input type="radio" class="form-control r" id="sex1" name="Sex" value="M">Masculin</label>
+                </div>
+
+                <div class="col-sm-6">
+                    <label> <input type="radio" class="form-control r" id="sex2" name="Sex" value="F">Feminin</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*<label class="control-label col-sm-2" for="quantity">CNP:</label>*@
+                <div class="align-content-lg-center">
+
+                    <input type="text" maxlength="13" class="form-control" id="quantity" placeholder="CNP" name="CNP">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="functie"></label>
+                <div class="align-content-lg-center select2-container">
+                    <select name="Functie" class="selectpicker" >
+                        <option value="" disabled selected>Alege functia</option>
+                        <option value="pacient">Pacient</option>
+                        <option value="asistent">Asistent</option>
+                        <option value="medic">Medic</option>
+                        <option value="administrator">Administrator</option>
+
+                    </select>
+                    
+                    </div>
+                    
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @*<label class="control-label col-sm-2" for="adresa">Adresa:</label>*@
+                <div class="align-content-lg-center">
+                    <textarea type="text" class="form-control" id="adresa" placeholder="Adresa actuala" name="adresa"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-10">
+                    <button type="submit" class="btn btn-default">Creare cont</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
