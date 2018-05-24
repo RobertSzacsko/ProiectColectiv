@@ -43,9 +43,17 @@ namespace ProiectColectiv.Controllers
             return View();
         }
 
-        public ActionResult ListaProgramari()
+        public ActionResult ListaProgramari(int? id)
         {
-            return View(db.Programari.ToList());
+            Asistent asistent = db.Asistent.Find(id);
+            if (id == null)
+            {
+                return View(db.Programari.ToList());
+            }
+            else
+            {
+                return View(db.Programari.SqlQuery("select * from Programari where id_Asistent = @p0", asistent.id_Asistent));
+            }            
         }
 
         public ActionResult ManagementPacienti()

@@ -1,6 +1,5 @@
 ﻿body {
     padding-top: 60px;
-    padding-bottom: 20px;
     background-color: #e1e1e1;
 }
 
@@ -80,4 +79,46 @@ textarea {
 
 .LoginLogo {
     height: 60%;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background: #3973ac;
+    background: -webkit-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: -o-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: -moz-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: linear-gradient(-135deg, #3973ac, #b3cce6);
+}
+
+
+/*card classes*/
+.row .card, .wrapper-status-bar {
+    box-shadow: 0 0 5px #888888;
+    border-radius: 2px;
+}
+
+.row.margin {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.card.padding {
+    padding: 10px;
+}
+
+/*Container classes*/
+.full-height-container {
+    min-height: calc(100vh - 51px);
+}
+
+/*general classes*/
+.informatii, .fisa-medicala{
+    font-weight: 700;
+    font-size: 1.2em;
+}
+.informatii p{
+    margin-bottom: 0;
 }

@@ -1,37 +1,161 @@
-﻿
+﻿@model ProiectColectiv.Pacient
 @{
     ViewBag.Title = "IstoricFisa";
     Layout = "~/Views/Shared/_LayoutPacient.cshtml";
 }
 
 <div class="container">
+    <h2 style="text-align:center">Fisa Medicala</h2>
     <div class="row margin-card shadow-card">
-         <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
-             <h3>Date personale</h3>
-             <div class="row">
-                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                     coloana1
-                      </div>
-                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                     coloana2
-                      </div>
-                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                     coloana3
-                 </div>
-             </div>
-         </div>
-    </div> 
-    @*se ia din model toate programarile*@
-    @*@foreach(var programare as )*@
-    <div class="row margin-card shadow-card">
-        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-            1
-        </div>
-        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-            2
-        </div>
-        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-            3
+        <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+            <h3>Internari</h3>
+            <div class="row margin-card shadow-card">
+                @if (@Model.FisaMedicala.Internari.Count != 0)
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+
+                        @foreach (var internare in @Model.FisaMedicala.Internari)
+                        {
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <label>Numar internare:</label>
+                                @internare.id_Internare
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <label>Data internarii:</label>
+                                @internare.DataInternarii
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <label>Data externarii:</label>
+                                @internare.DataExternarii
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <label>Motiv:</label>
+                                @internare.Motiv
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <label>Observatii:</label>
+                                @internare.Observatii
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+                        <p>Pacientul nu a fost internat</p>
+                    </div>
+                }
+
+            </div>
+            <h3>Reteta</h3>
+            <div class="row margin-card shadow-card">
+                @foreach (var reteta in @Model.FisaMedicala.Retete)
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Numar reteta:</label>
+                            @reteta.id_Reteta
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Tip:</label>
+                            @reteta.Tip
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Durata:</label>
+                            @reteta.Durata
+                        </div>
+                        <br>
+                        <h3>Medicatie</h3>
+                        <div class="row margin-card shadow-card">
+                            @foreach (var medicament in reteta.Medicamente)
+                            {
+                                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                    <label>Nume:</label>
+                                    @medicament.Nume
+                                </div>
+
+                                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                    <label>Cantitate:</label>
+                                    @medicament.Cantitate
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                    <label>Mod de administrare:</label>
+                                    @medicament.Administrare
+                                </div>
+                            }
+                        </div>
+
+
+
+                    </div>
+
+                }
+            </div>
+            <h3>Alergii</h3>
+            <div class="row margin-card shadow-card">
+                @foreach (var alergie in @Model.FisaMedicala.Alergii)
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Nume:</label>
+                            @alergie.Tip
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <h3>Afectiuni</h3>
+            <div class="row margin-card shadow-card">
+                @foreach (var boala in @Model.FisaMedicala.Boli)
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Nume:</label>
+                            @boala.Denumire
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Tip:</label>
+                            @boala.Tip
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Data:</label>
+                            @boala.DataBoala
+                        </div>
+
+                    </div>
+                }
+            </div>
+            <h3>Vaccinuri:</h3>
+            <div class="row margin-card shadow-card">
+                @foreach (var vaccin in @Model.FisaMedicala.Vaccinuri)
+                {
+                    <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Nume:</label>
+                            @vaccin.Tip
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <label>Tip:</label>
+                            @vaccin.DataVaccin
+                        </div>
+                    </div>
+                }
+            </div>
+            <h3>Contraindicatii:</h3>
+            <div class="row margin-card shadow-card">
+
+                <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+                    <div class="col-sm-offset-1 col-ms-offset-1 col-lg-offset-1 col-sm-8 col-ms-8 col-lg-8">
+                        @Model.FisaMedicala.Contraindicatii
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
