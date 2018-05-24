@@ -1,28 +1,29 @@
-﻿@model IEnumerable<ProiectColectiv.Medic>
+﻿@model ProiectColectiv.Medic
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Vizualizare programari";
     Layout = "~/Views/Shared/_LayoutMedic.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Programarile din @DateTime.Now.Date.Day/@DateTime.Now.Date.Month/@DateTime.Now.Date.Year</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Medic }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Medic }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Medic })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="row margin">
+    @foreach (var item in Model.Programari)
+    {
+        if (item.DataConsultatiei.Value.Date.CompareTo(DateTime.Now.Date) == 0)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card padding margin-bottom-10">
+                    <div class="informatii">
+                        <p>
+                            @Html.DisplayFor(m => item.Pacient.Utilizator.Nume) @Html.DisplayFor(m => item.Pacient.Utilizator.Prenume) @Html.DisplayFor(m => item.DataConsultatiei.Value.Hour):@Html.DisplayFor(m => item.DataConsultatiei.Value.Minute)@(item.DataConsultatiei.Value.Minute == 0 ? @Html.DisplayFor(m => item.DataConsultatiei.Value.Minute) : MvcHtmlString.Empty)
+                        </p>
+                        <a class="btn btn-default" href="@Url.Action("VizualizareFisa", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala})">Vezi Fisa</a>
+                        <a class="btn btn-default" href="@Url.Action("StabilireDiagnostic", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala})">Diagnostic</a>
+                        <a class="btn btn-default" href="@Url.Action("EmitereReteta", "Medic", new { id = item.id_Programare})">Emitere Reteta</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

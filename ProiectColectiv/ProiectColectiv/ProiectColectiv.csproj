@@ -426,6 +426,7 @@
     <Content Include="Views\Medic\Details.cshtml" />
     <Content Include="Views\Medic\Edit.cshtml" />
     <Content Include="Views\Medic\Index.cshtml" />
+    <Content Include="Views\Medic\VizualizareFisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

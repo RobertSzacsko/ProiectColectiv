@@ -17,7 +17,18 @@ namespace ProiectColectiv.Controllers
         // GET: Medic
         public ActionResult Index()
         {
-            return View(db.Medic.ToList());
+            //Utilizator user = (Utilizator)Session["Utilizator"];
+            var user = db.Utilizator.Find(3);
+            var medic = db.Medic.First(x => x.Utilizator.id_Utilizator == user.id_Utilizator);
+            List<Programari> programari = medic.Programari.OrderBy(x => x.DataConsultatiei).ToList();
+
+            medic.Programari.Clear();
+            foreach(var item in programari)
+            {
+                medic.Programari.Add(item);
+            }
+
+            return View(medic);
         }
 
         // GET: Medic/Details/5
@@ -113,6 +124,20 @@ namespace ProiectColectiv.Controllers
             db.Medic.Remove(medic);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult VizualizareFisa(int ?id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FisaMedicala fisa = db.FisaMedicala.Find(id);
+            if (fisa == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fisa);
         }
 
         protected override void Dispose(bool disposing)
