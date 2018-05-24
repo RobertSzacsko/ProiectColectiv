@@ -7,17 +7,22 @@
 
 <h2>ListaProgramari</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Asistent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataConsultatiei)
-        </th>
+        <td style="font-weight:600; font-size:20px">
+            @{var e = Model.First();
+                string path = HttpContext.Current.Request.Url.AbsolutePath;
+                if (path == "/Asistents/ListaProgramari")
+                {
+                    e.Asistent.Utilizator.Nume = "Toate ";
+                    e.Asistent.Utilizator.Prenume = "programarile: ";
+                }
+            }
+            @Html.DisplayFor(modelItem => e.Asistent.Utilizator.Nume)
+            @Html.DisplayFor(modelItem => e.Asistent.Utilizator.Prenume)
+        </td>
+    </tr>
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.Pacient)
         </th>
@@ -25,7 +30,13 @@
             @Html.DisplayNameFor(model => model.StatusProgramare)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DataConsultatiei)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Medic)
+        </th>
+        <th>
+            <p>Editare</p>
         </th>
     </tr>
 
@@ -33,18 +44,14 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Asistent.Utilizator.Nume )
-                @Html.DisplayFor(modelItem => item.Asistent.Utilizator.Prenume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataConsultatiei)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Pacient.Utilizator.Nume)
                 @Html.DisplayFor(modelItem => item.Pacient.Utilizator.Prenume)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StatusProgramare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataConsultatiei)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Medic.Utilizator.Nume)
