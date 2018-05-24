@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ProiectColectiv.Programari>
-
+@{ var result = Model.OrderBy(s => s.DataConsultatiei);
+}
 @{
     ViewBag.Title = "ListaProgramari";
     Layout = "~/Views/Shared/_LayoutAsistent.cshtml";
@@ -40,7 +41,7 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in result)
     {
         <tr>
             <td>
