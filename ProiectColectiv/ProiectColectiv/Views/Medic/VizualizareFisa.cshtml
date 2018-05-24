@@ -1,0 +1,113 @@
+﻿@model ProiectColectiv.FisaMedicala
+
+@{
+    ViewBag.Title = "Fisa medicala";
+    Layout = "~/Views/Shared/_LayoutMedic.cshtml";
+}
+
+<h2>Fisa medicala</h2>
+
+<div class="row margin fisa-medicala">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card padding margin-bottom-10">
+            <div class="row">
+                @if (Model.Alergii.Count != 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.Alergii):</span>
+                            @foreach (var item in Model.Alergii)
+                            {
+                                if (item == Model.Alergii.ElementAt(Model.Alergii.Count - 1))
+                                {
+                                    <span>@Html.DisplayFor(x => item.Tip)</span>
+                                }
+                                else
+                                {
+                                    <span>@Html.DisplayFor(x => item.Tip), </span>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+                @if (Model.Boli.Count != 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.Boli):</span>
+                            @foreach (var item in Model.Boli)
+                            {
+                                if (item == Model.Boli.ElementAt(Model.Boli.Count - 1))
+                                {
+                                    <span>@Html.DisplayFor(x => item.Denumire)</span>
+                                }
+                                else
+                                {
+                                    <span>@Html.DisplayFor(x => item.Denumire), </span>
+                                }
+
+                            }
+                        </div>
+                    </div>
+                }
+                @if (Model.Internari.Count != 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.Internari):</span>
+                            <div class="row">
+                                @foreach (var item in Model.Internari)
+                                {
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="card padding margin-bottom-10">
+                                            <div>@Html.DisplayNameFor(x => item.Motiv): @Html.DisplayFor(x => item.Motiv)</div>
+                                            <div>@Html.DisplayNameFor(x => item.DataInternarii): @Html.DisplayFor(x => item.DataInternarii.Value.Day)/@Html.DisplayFor(x => item.DataInternarii.Value.Month)/@Html.DisplayFor(x => item.DataInternarii.Value.Year)</div>
+                                            <div>@Html.DisplayNameFor(x => item.DataExternarii): @Html.DisplayFor(x => item.DataExternarii.Value.Day)/@Html.DisplayFor(x => item.DataExternarii.Value.Month)/@Html.DisplayFor(x => item.DataExternarii.Value.Year)</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.Vaccinuri.Count != 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.Vaccinuri):</span>
+                            @foreach (var item in Model.Vaccinuri)
+                            {
+                                if (item == Model.Vaccinuri.ElementAt(Model.Vaccinuri.Count - 1))
+                                {
+                                    <span>@Html.DisplayFor(x => item.Tip)</span>
+                                }
+                                else
+                                {
+                                    <span>@Html.DisplayFor(x => item.Tip), </span>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+                @if (Model.Contraindicatii != null)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.Contraindicatii): @Html.DisplayFor(x => x.Contraindicatii)</span>
+                        </div>
+                    </div>
+                }
+                @if (Model.UltimulControl.Value.Date.CompareTo(DateTime.MinValue) != 0)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card padding margin-bottom-10">
+                            <span>@Html.DisplayNameFor(x => x.UltimulControl): @Html.DisplayFor(x => x.UltimulControl.Value.Day)/@Html.DisplayFor(x => x.UltimulControl.Value.Month)/@Html.DisplayFor(x => x.UltimulControl.Value.Year)</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-default" href="@Url.Action("Index", "Medic")">Inapoi</a>

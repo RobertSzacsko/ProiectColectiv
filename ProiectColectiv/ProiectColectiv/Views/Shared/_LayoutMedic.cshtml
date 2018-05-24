@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top menu-custom">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href='@Url.Action("Index", "Medic")'>
+                    <img src='@Url.Content("~/Content/Images/Logo.png")' width="50" height="50" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                @*Redenumeste actiuniile din controlller si creaza folder Asistent cu paginele specifiece*@
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Vizualizare Prog", "ListaProgramari", "Asistents")</li>
+                    <li>@Html.ActionLink("Management Prog", "PaginaProgramari", "Asistents")</li>
+                    <li>@Html.ActionLink("Managementul Pacientilor", "PaginaPacienti", "Asistents")</li>*@
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container-wraper body-content">
+        <div class="container full-height-container">
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <div class="footer-wraper">
+            <div class="footer-content">
+                <p class="footer-p">&copy; @DateTime.Now.Year - Proiect Colectiv</p>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
