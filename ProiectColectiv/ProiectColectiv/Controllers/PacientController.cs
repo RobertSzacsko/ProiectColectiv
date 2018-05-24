@@ -8,6 +8,7 @@ namespace ProiectColectiv.Controllers
 {
     public class PacientController : Controller
     {
+        ProiectColectivEntities db = new ProiectColectivEntities();
         // GET: Pacient
         public ActionResult Index()
         {
@@ -16,7 +17,8 @@ namespace ProiectColectiv.Controllers
 
         public ActionResult IstoricFisa()
         {
-            return View();
+            var pacienti = db.Pacient;
+            return View(pacienti);
         }
         public ActionResult Programare()
         {

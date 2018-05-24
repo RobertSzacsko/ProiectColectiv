@@ -81,3 +81,11 @@ textarea {
 .LoginLogo {
     height: 60%;
 }
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background: #3973ac;
+    background: -webkit-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: -o-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: -moz-linear-gradient(-135deg, #3973ac, #b3cce6);
+    background: linear-gradient(-135deg, #3973ac, #b3cce6);
+}
