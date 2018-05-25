@@ -18,6 +18,7 @@ namespace ProiectColectiv
         public ProiectColectivEntities()
             : base("name=ProiectColectivEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
