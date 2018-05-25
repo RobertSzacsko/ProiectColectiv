@@ -8,7 +8,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using ProiectColectiv;
+
 
 namespace ProiectColectiv.Controllers
 {
@@ -146,6 +148,45 @@ namespace ProiectColectiv.Controllers
             db.Utilizator.Remove(utilizator);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Register(Utilizator model)
+        {
+            var ConfirmareParola = Request.Form["pwd"];
+            
+            if (ModelState.IsValid && (model.Parola.Equals(ConfirmareParola)))
+            {
+                var PAROLA = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(model.Parola));
+                model.Parola = BitConverter.ToString(PAROLA).Replace("-", "").ToLower();
+                
+                // Attempt to register the user
+                try
+                {
+                    model.DataCreare = DateTime.Now;
+                    var date =new DatePersonale(Request.Form["CNP"], 
+                                                Request.Form["Email"],
+                                                Request.Form["Telefon"],
+                                                Convert.ToInt32(Request.Form["Varsta"]),
+                                                Request.Form["Sex"],
+                                                Request.Form["Adresa"]);
+
+                    model.DatePersonale = date;
+                    db.Utilizator.Add(model);
+
+                    //db.DatePersonale.Add(model.DatePersonale);
+                    db.SaveChanges();
+                    
+                    return RedirectToAction("Index");
+                }
+                catch (MembershipCreateUserException e)
+                {
+                    ModelState.AddModelError("", e.StatusCode.ToString());
+                }
+            }
+
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

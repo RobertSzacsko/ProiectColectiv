@@ -19,7 +19,15 @@ namespace ProiectColectiv
         {
             this.Utilizator = new HashSet<Utilizator>();
         }
-    
+        public DatePersonale(string cnp,string email,string telefon,int? varsta, string sex,string adresa)
+        {
+            this.CNP = cnp;
+            this.Email = email;
+            this.Telefon = telefon;
+            this.Varsta = varsta;
+            this.Sex = sex;
+            this.Adresa = adresa;
+        }
         public int id_DatePersonale { get; set; }
         public string CNP { get; set; }
         public string Email { get; set; }

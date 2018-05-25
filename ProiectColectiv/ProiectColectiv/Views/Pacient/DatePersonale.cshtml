@@ -1,4 +1,5 @@
 ﻿@model ProiectColectiv.Pacient
+
 @{
     ViewBag.Title = "DatePersonale";
     Layout = "~/Views/Shared/_LayoutPacient.cshtml";
@@ -35,23 +36,21 @@
             </div>
             <h3>Informatii de contact</h3>
             <div class="row margin-card shadow-card">
+                
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Adresa:</label>
+                        @Model.Utilizator.DatePersonale.Adresa
+                    </div>
 
-                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-                    <label>Nume:</label>
-                    @Model.Utilizator.DatePersonale.Adresa
-                </div>
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>E-mail:</label>
+                        @Model.Utilizator.DatePersonale.Email
+                    </div>
 
-                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-                    <label>Nume:</label>
-                    @Model.Utilizator.DatePersonale.Email
-                </div>
-
-                <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-                    <label>Nume:</label>
-                    @Model.Utilizator.DatePersonale.Telefon
-                </div>
-
-
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Telefon:</label>
+                        @Model.Utilizator.DatePersonale.Telefon
+                    </div>
             </div>
         </div>
     </div>

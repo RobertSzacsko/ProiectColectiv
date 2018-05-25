@@ -19,15 +19,15 @@ namespace ProiectColectiv.Controllers
         //GET: Pacient
         public ActionResult IstoricFisa()
         {
-            //var pacient = (Utilizator)Session["Utilizator"];
-            var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
-            return View(pacient);
+            var utilizator = (Utilizator)Session["Utilizator"];
+           // var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
+            return View(utilizator.Pacient);
         }
 
         public ActionResult DatePersonale()
         {
-            //var pacient = (Utilizator)Session["Utilizator"];
-            var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
             return View(pacient);
         }
 
