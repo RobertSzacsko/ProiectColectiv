@@ -1,8 +1,51 @@
-﻿
+﻿@model ProiectColectiv.Pacient
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IstoricFisa";
     Layout = "~/Views/Shared/_LayoutPacient.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
 
+    <div class="row margin-card shadow-card">
+        <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+            <h3>Bun venit, @Model.Utilizator.Nume @Model.Utilizator.Prenume</h3>
+            <div class="row margin-card shadow-card">
+                @{
+                    var pa = Model.Programari.Where(x => x.StatusProgramare == "Stabilit").OrderBy(x => x.DataConsultatiei).ToList();
+                    if (pa.ToList().Count != 0)
+                    {
+                        <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+                            <h3>Programari acceptate</h3>
+                            <div class="row margin-card shadow-card">
+                                @foreach(var item in pa)
+                                {
+                                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                        Domnul,@item.Asistent.Utilizator.Nume, a acceptat programarea dumneavoastra in data de @item.DataConsultatiei 
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="col-sm-6 col-ms-6 col-lg-6">
+                    Medicul dumneavoastra este: @Model.Medic.Utilizator.Nume @Model.Medic.Utilizator.Prenume
+
+                </div>
+                <div class="col-xs-6 col-lg-6 col-md-6 col-sm-6">
+                    <h3>Efectuare programare</h3>
+                    <div class="row margin-card shadow-card">
+
+                        <div class="col-xs-12 col-sm-12 col-ms-12 col-lg-12">
+                            <form method="post">
+                                Data consultului: 
+                                <input type="date" name="DataConsultatiei" min="@DateTime.Now.ToShortDateString().ToString()">
+                                <input type="submit" name="buton">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

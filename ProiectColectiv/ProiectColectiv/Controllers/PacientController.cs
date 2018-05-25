@@ -9,19 +9,22 @@ namespace ProiectColectiv.Controllers
 {
     public class PacientController : Controller
     {
-        
+
         ProiectColectivEntities db = new ProiectColectivEntities();
         // GET: Pacient
         public ActionResult Index()
         {
-            return View();
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+
+            return View(pacient);
         }
         //GET: Pacient
         public ActionResult IstoricFisa()
         {
-            var utilizator = (Utilizator)Session["Utilizator"];
-           // var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
-            return View(utilizator.Pacient);
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            return View(pacient);
         }
 
         public ActionResult DatePersonale()
@@ -31,10 +34,85 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
 
-
+        [HttpGet]
         public ActionResult Programare()
         {
-            return View();
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            return View(pacient);
+        }
+        [HttpPost]
+        public ActionResult Programare(Programari model)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            if (ModelState.IsValid)
+            {
+                model.DataOraEfectuare = DateTime.Now;
+                model.StatusProgramare = "Efectuat";
+                model.Pacient = pacient;
+                model.Medic = pacient.Medic;
+                model.Asistent = pacient.Medic.Asistent.First();
+                db.Programari.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(pacient);
+        }
+        [HttpPost]
+        public ActionResult EditareProgramare(Programari model)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            var prog = db.Programari.OrderByDescending(x => x.DataConsultatiei).First().id_Programare;
+            if (ModelState.IsValid)
+            {
+                db.Programari.First(x => x.id_Programare == prog).DataConsultatiei = model.DataConsultatiei;
+                db.Programari.First(x => x.id_Programare == prog).DataModificarii = DateTime.Now;
+                db.Programari.First(x => x.id_Programare == prog).StatusProgramare = "Modificat";
+                db.Programari.First(x => x.id_Programare == prog).Pacient = pacient;
+                db.Programari.First(x => x.id_Programare == prog).Medic = pacient.Medic;
+                db.Programari.First(x => x.id_Programare == prog).Asistent = model.Asistent = pacient.Medic.Asistent.First();
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(pacient);
+        }
+
+        public ActionResult StergeProgramare(Programari model)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            var prog = db.Programari.OrderByDescending(x => x.DataConsultatiei).First().id_Programare;
+            if (ModelState.IsValid)
+            {
+                db.Programari.Remove(db.Programari.First(x => x.id_Programare == prog));
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(pacient);
+        }
+
+        [HttpPost]
+        public ActionResult Index(Programari model)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            if (ModelState.IsValid)
+            {
+                model.DataOraEfectuare = DateTime.Now;
+                model.StatusProgramare = "Efectuat";
+                model.Pacient = pacient;
+                model.Medic = pacient.Medic;
+                model.Asistent = pacient.Medic.Asistent.First();
+                db.Programari.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(pacient);
         }
 
         public ActionResult Logout()
