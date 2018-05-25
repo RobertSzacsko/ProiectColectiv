@@ -12,20 +12,20 @@ namespace ProiectColectiv
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class ProiectColectivEntities : DbContext
     {
         public ProiectColectivEntities()
             : base("name=ProiectColectivEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Administrator> Administrator { get; set; }
         public virtual DbSet<Alergii> Alergii { get; set; }
         public virtual DbSet<Arhiva> Arhiva { get; set; }
