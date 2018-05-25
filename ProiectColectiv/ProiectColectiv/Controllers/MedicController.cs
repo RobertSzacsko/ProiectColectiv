@@ -24,7 +24,7 @@ namespace ProiectColectiv.Controllers
             List<Programari> programari = medic.Programari.OrderBy(x => x.DataConsultatiei).ToList();
 
             medic.Programari.Clear();
-            foreach(var item in programari)
+            foreach (var item in programari)
             {
                 medic.Programari.Add(item);
             }
@@ -159,7 +159,7 @@ namespace ProiectColectiv.Controllers
                 db.SaveChanges();
                 ViewData["Info"] = "Diagnosticul a fost salvat cu succes!";
                 ViewData["InfoClasses"] = "general-modal-succes";
-                
+
                 return PartialView("GeneralModal");
             }
             ViewData["Info"] = "A aparut o eroare! Te rog incearca din nou!";
@@ -172,6 +172,7 @@ namespace ProiectColectiv.Controllers
         public ActionResult EmitereReteta(int? id)
         {
             FisaMedicala fisaMedicala = db.FisaMedicala.Find(id);
+
             if (id == null || fisaMedicala == null)
             {
                 ViewData["Info"] = "A aparut o eroare! Te rog incearca din nou!";
@@ -179,15 +180,63 @@ namespace ProiectColectiv.Controllers
 
                 return PartialView("GeneralModal");
             }
-            //aici ai id_fisa_medicala
 
+            return View("EmitereReteta");
+        }
+
+        [HttpPost, ActionName("EmitereReteta")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Emitere([Bind(Include = "Reteta,Medicamente")] RetetaMedic rm)
+        {
+            var id = Convert.ToInt32(Request.UrlReferrer.ToString().Split('/').Last());
+            var nume = Request.Form["Medicamente.Nume"];
+            var cantitate = Request.Form["Medicamente.Cantitate"];
+            var administratie = Request.Form["Medicamente.Administrare"];
+            List<Medicamente> newlist = MapRequest(nume, cantitate, administratie);
+
+            if (rm.Reteta.Tip != null && rm.Reteta.Durata != null
+                && rm.Medicamente.Nume != null && rm.Medicamente.Cantitate != null && rm.Medicamente.Administrare != null)
+            {
+                Retete ret = new Retete
+                {
+                    Medicamente = newlist,
+                    Tip = rm.Reteta.Tip,
+                    Durata = rm.Reteta.Durata,
+                    FisaMedicala = db.FisaMedicala.Find(id)
+
+                };
+                foreach (var item in newlist)
+                {
+                    db.Medicamente.Add(item);
+                }
+                db.Retete.Add(ret);
+                db.SaveChanges();
+                ViewData["Info"] = "Reteta a fost trimisa cu succes pacientului!";
+                ViewData["InfoClasses"] = "general-modal-succes";
+
+                return PartialView("GeneralModal");
+            }
             return View();
         }
 
-        [HttpPost]
-        public ActionResult EmitereReteta([Bind(Include = "")] RetetaMedic re)
+        private List<Medicamente> MapRequest(string nume, string cantitate, string administratie)
         {
-            return View();
+            string[] numes = nume.Split(new char[] { ',' }, StringSplitOptions.None);
+            string[] cantitates = cantitate.Split(new char[] { ',' }, StringSplitOptions.None);
+            string[] administraties = administratie.Split(new char[] { ',' }, StringSplitOptions.None);
+            List<Medicamente> list = new List<Medicamente>();
+
+            for (int i = 0; i < administraties.Count(); i++)
+            {
+                list.Add(new Medicamente
+                {
+                    Nume = numes[i],
+                    Cantitate = Convert.ToInt32(cantitates[i]),
+                    Administrare = administraties[i],
+                });
+            }
+
+            return list;
         }
 
         protected override void Dispose(bool disposing)
