@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using ProiectColectiv;
@@ -18,9 +20,8 @@ namespace ProiectColectiv.Controllers
         // GET: Medic
         public ActionResult Index()
         {
-            //Utilizator user = (Utilizator)Session["Utilizator"];
-            var user = db.Utilizator.Find(3);
-            var medic = db.Medic.First(x => x.Utilizator.id_Utilizator == user.id_Utilizator);
+            Utilizator user = (Utilizator)Session["Utilizator"];
+            var medic = db.Medic.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
             List<Programari> programari = medic.Programari.OrderBy(x => x.DataConsultatiei).ToList();
 
             medic.Programari.Clear();
@@ -155,8 +156,11 @@ namespace ProiectColectiv.Controllers
             if (diagnostic.Descriere != null && id != 0)
             {
                 diagnostic.Programari = db.Programari.Find(id);
-                db.Diagnostic.Add(diagnostic);
+                diagnostic.id_Diagnostic = db.Diagnostic.Where(x => x.Programari.id_Programare == diagnostic.Programari.id_Programare).First().id_Diagnostic;
+                db.Diagnostic.Where(x => x.id_Diagnostic == diagnostic.id_Diagnostic).First().Descriere = diagnostic.Descriere;
+                
                 db.SaveChanges();
+
                 ViewData["Info"] = "Diagnosticul a fost salvat cu succes!";
                 ViewData["InfoClasses"] = "general-modal-succes";
 
@@ -214,6 +218,57 @@ namespace ProiectColectiv.Controllers
                 ViewData["Info"] = "Reteta a fost trimisa cu succes pacientului!";
                 ViewData["InfoClasses"] = "general-modal-succes";
 
+                return PartialView("GeneralModal");
+            }
+            return View();
+        }
+
+        public ActionResult Asistent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Asistent([Bind(Include = "CodUtilizator,Nume,Prenume,Parola")] Utilizator ut)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            DatePersonale dp = new DatePersonale
+            {
+                CNP = Request.Form["DatePersonale.CNP"],
+                Email = Request.Form["DatePersonale.Email"],
+                Telefon = Request.Form["DatePersonale.Telefon"],
+                Varsta = Convert.ToInt32(Request.Form["DatePersonale.Varsta"]),
+                Sex = Request.Form["DatePersonale.Sex"],
+                Adresa = Request.Form["DatePersonale.Adresa"],
+            };
+
+            if (dp.CNP != null && dp.Email != null && dp.Telefon != null && dp.Varsta != null && dp.Sex != null && dp.Adresa != null
+                && ut.CodUtilizator != null && ut.Prenume != null && ut.Nume != null && ut.Parola != null)
+            {
+                var PAROLA = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(ut.Parola));
+                ut.Parola = BitConverter.ToString(PAROLA).Replace("-", "").ToLower();
+
+                db.DatePersonale.Add(dp);
+                db.SaveChanges();
+
+                ut.DatePersonale = dp;
+                ut.Functie = "Asistent";
+                ut.DataCreare = DateTime.Now;
+                Medic m = db.Medic.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+
+                db.Utilizator.Add(ut);
+                db.SaveChanges();
+
+                Asistent asi = new Asistent
+                {
+                    Medic = m,
+                    Utilizator = ut
+                };
+                db.Asistent.Add(asi);
+                db.SaveChanges();
+
+                ViewData["Info"] = "Asistentul a fost adaugat cu succes!";
+                ViewData["InfoClasses"] = "general-modal-succes";
                 return PartialView("GeneralModal");
             }
             return View();

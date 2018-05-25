@@ -434,6 +434,7 @@
     <Content Include="Views\Login\InvalidLogin.cshtml" />
     <Content Include="Views\Pacient\DatePersonale.cshtml" />
     <Content Include="Views\Medic\EmitereReteta.cshtml" />
+    <Content Include="Views\Medic\Asistent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
