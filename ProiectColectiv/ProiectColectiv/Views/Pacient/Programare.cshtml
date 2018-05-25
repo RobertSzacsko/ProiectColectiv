@@ -1,4 +1,5 @@
-﻿
+﻿@model ProiectColectiv.Pacient
+
 @{
     ViewBag.Title = "Programare";
     Layout = "~/Views/Shared/_LayoutPacient.cshtml";
@@ -8,20 +9,78 @@
 
 
 <div class="container">
-    <h2 style="text-align:center">Efectuare programare</h2>
+    <h2 style="text-align:center">Programari</h2>
     <div class="row margin-card shadow-card">
         <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
-            <h3>Date personale</h3>
+            <h3>Efectuare programare</h3>
             <div class="row margin-card shadow-card">
 
                 <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
-                    <form>
-                        Data:
-                        <input type="date" name="data">
-                        <input type="submit" name="buton">
+                    <form method="post" action="/Pacient/Programare">
+                        Data consultului:
+                        <input type="date" name="DataConsultatiei">
+                        <input type="submit" name="buton" value="Creaza programare">
                     </form>
                 </div>
             </div>
         </div>
+        <div class="row margin-card shadow-card">
+            <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+                <h3>Ultimele programari:</h3>
+                <div class="row margin-card shadow-card">
+                    @{
+                        var prog = Model.Programari.OrderByDescending(x => x.DataConsultatiei);
+                        foreach (var item in prog)
+                        {
+
+                    <div class="row margin-card shadow-card">
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <h2>Asistent</h2>
+                            @item.Asistent.Utilizator.Nume @item.Asistent.Utilizator.Prenume
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <h2>Data consultatiei</h2>
+                            @item.DataConsultatiei
+
+
+                        </div>
+                        @if (item.DataModificarii != null)
+                        {
+
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <h3>Reprogramata</h3>
+                                @item.DataConsultatiei
+
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                                <h3>Reprogramata</h3>
+                                -
+                            </div>
+                        }
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+
+                            <form method="post" action="/Pacient/EditareProgramare">
+                                Reprogrameaza:
+                                <input type="date" name="DataConsultatiei">
+                                <input type="submit" name="buton" value="Modifica">
+                            </form>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+
+                            <a href="@Url.Action("StergeProgramare")" >Sterge</a>
+                        </div>
+                    </div>
+                        }
+                    
+                    }
+
+
+                </div>
+            </div>
+        </div>
     </div>
-</div>
