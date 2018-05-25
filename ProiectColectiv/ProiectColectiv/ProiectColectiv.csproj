@@ -194,6 +194,7 @@
     <Compile Include="Medicamente.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RetetaMedic.cs" />
     <Compile Include="Pacient.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>
@@ -376,6 +377,7 @@
     <Content Include="Content\fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="Content\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\general-modal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -412,7 +414,7 @@
     <Content Include="Views\Asistents\Index.cshtml" />
     <Content Include="Views\Asistents\ListaProgramari.cshtml" />
     <Content Include="Views\Asistents\ManagementPacienti.cshtml" />
-    <Content Include="Views\Asistents\PaginaPacienti.cshtml" />
+    <Content Include="Views\Asistents\ManagementProgramari.cshtml" />
     <Content Include="Views\Shared\_LayoutMedic.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
@@ -427,12 +429,14 @@
     <Content Include="Views\Medic\Edit.cshtml" />
     <Content Include="Views\Medic\Index.cshtml" />
     <Content Include="Views\Medic\VizualizareFisa.cshtml" />
+    <Content Include="Views\Medic\StabilireDiagnostic.cshtml" />
+    <Content Include="Views\Medic\GeneralModal.cshtml" />
     <Content Include="Views\Login\InvalidLogin.cshtml" />
     <Content Include="Views\Pacient\DatePersonale.cshtml" />
+    <Content Include="Views\Medic\EmitereReteta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

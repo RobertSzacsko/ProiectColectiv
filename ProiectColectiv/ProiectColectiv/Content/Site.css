@@ -11,12 +11,6 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 .red{
     background-color:red;
 }
@@ -113,12 +107,43 @@ textarea {
 .full-height-container {
     min-height: calc(100vh - 51px);
 }
+.second-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
 /*general classes*/
-.informatii, .fisa-medicala{
+.informatii, .fisa-medicala {
     font-weight: 700;
     font-size: 1.2em;
 }
 .informatii p{
     margin-bottom: 0;
+}
+
+.control-label.margin-top-20 {
+    margin-top: 20px;
+}
+
+/* modal classes*/
+.close-modal {
+    position: relative;
+    top: -10px;
+}
+
+.general-modal-succes, .general-modal-eroare {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.general-modal-succes {
+    color: darkgreen;
+}
+
+.general-modal-eroare {
+    color: darkred;
+}
+
+.general-modal {
+    text-align: center;
 }

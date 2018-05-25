@@ -18,12 +18,14 @@
                         <p>
                             @Html.DisplayFor(m => item.Pacient.Utilizator.Nume) @Html.DisplayFor(m => item.Pacient.Utilizator.Prenume) @Html.DisplayFor(m => item.DataConsultatiei.Value.Hour):@Html.DisplayFor(m => item.DataConsultatiei.Value.Minute)@(item.DataConsultatiei.Value.Minute == 0 ? @Html.DisplayFor(m => item.DataConsultatiei.Value.Minute) : MvcHtmlString.Empty)
                         </p>
-                        <a class="btn btn-default" href="@Url.Action("VizualizareFisa", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala})">Vezi Fisa</a>
-                        <a class="btn btn-default" href="@Url.Action("StabilireDiagnostic", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala})">Diagnostic</a>
-                        <a class="btn btn-default" href="@Url.Action("EmitereReteta", "Medic", new { id = item.id_Programare})">Emitere Reteta</a>
+                        <a id="fisa" class="btn btn-default" href="@Url.Action("VizualizareFisa", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala })">Vezi Fisa</a>
+                        <a href="#" id="id_programare" class="btn btn-default" data-toggle="modal" data-target="#DiagnosticModal">Diagnostic</a>
+                        <a hidden id="programare" value="@item.id_Programare"></a>
+                        <a class="btn btn-default" href="@Url.Action("EmitereReteta", "Medic", new { id = item.Pacient.FisaMedicala.id_FisaMedicala})">Reteta</a>
                     </div>
                 </div>
             </div>
         }
     }
+    @Html.Action("StabilireDiagnostic", "Medic")
 </div>

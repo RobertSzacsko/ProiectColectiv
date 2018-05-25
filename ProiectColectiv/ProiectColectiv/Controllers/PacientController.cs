@@ -26,8 +26,8 @@ namespace ProiectColectiv.Controllers
 
         public ActionResult DatePersonale()
         {
-            var utilizator = (Utilizator)Session["Utilizator"];
-            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == utilizator.id_Utilizator).First();
+            var user = (Utilizator)Session["Utilizator"];
+            var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
             return View(pacient);
         }
 

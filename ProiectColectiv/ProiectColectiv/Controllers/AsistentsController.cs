@@ -56,12 +56,21 @@ namespace ProiectColectiv.Controllers
             }            
         }
 
-        public ActionResult ManagementPacienti()
+        public async Task<ActionResult> ManagementPacienti(int? id)
         {
-            return View();
+            Pacient pacient = await db.Pacient.FindAsync(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (pacient == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pacient);
         }
 
-        public ActionResult PaginaPacienti()
+        public ActionResult ManagementProgramari()
         {
             return View();
         }
@@ -83,7 +92,6 @@ namespace ProiectColectiv.Controllers
             return View(asistent);
         }
 
-        // GET: Asistents/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -98,9 +106,6 @@ namespace ProiectColectiv.Controllers
             return View(asistent);
         }
 
-        // POST: Asistents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "id_Asistent")] Asistent asistent)
