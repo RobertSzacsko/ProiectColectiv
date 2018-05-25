@@ -1,68 +1,69 @@
-﻿@model IEnumerable<ProiectColectiv.Programari>
-@{ var result = Model.OrderBy(s => s.DataConsultatiei);
-}
+﻿@model ProiectColectiv.Asistent
+
 @{
     ViewBag.Title = "ListaProgramari";
     Layout = "~/Views/Shared/_LayoutAsistent.cshtml";
 }
 
-<h2>ListaProgramari</h2>
+<div class="container">
+    <div class="row margin-card shadow-card">
 
-<table class="table">
-    <tr>
-        <td style="font-weight:600; font-size:20px">
-            @{var e = Model.First();
-                string path = HttpContext.Current.Request.Url.AbsolutePath;
-                if (path == "/Asistent/ListaProgramari")
-                {
-                    e.Asistent.Utilizator.Nume = "Toate ";
-                    e.Asistent.Utilizator.Prenume = "programarile: ";
-                }
+        <h3 style="text-align:center">Programari</h3>
+        <div class="row margin-card shadow-card">
+            @foreach (var prog in @Model.Programari)
+            {
+            <div class="col-sm-offset-2 col-ms-offset-2 col-lg-offset-2 col-sm-8 col-ms-8 col-lg-8">
+
+                <h3>Data consultatiei</h3>
+                <div class="row margin-card shadow-card">
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Numar Programare:</label><br />
+                        @prog.id_Programare
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Data efectuarii:</label><br />
+                        @prog.DataOraEfectuare
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Status Programare:</label><br />
+                        @prog.StatusProgramare
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <label>Data Consultatiei:</label><br />
+                        @prog.DataConsultatiei
+                    </div>
+
+                    @if (prog.DataModificarii != null)
+                    {
+
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <h3>Reprogramata</h3>
+                            @prog.DataConsultatiei
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                            <h3>Reprogramata</h3>
+                            -
+                        </div>
+                    }
+
+                    <div class="col-xs-12 col-sm-4 col-ms-4 col-lg-4">
+                        <a href="@Url.Action("ConfirmaProgramare","Asistent",new { idprog = prog.id_Programare})">Confirma</a>
+                    </div>
+                </div>
+
+            </div>
+
+
             }
-            @Html.DisplayFor(modelItem => e.Asistent.Utilizator.Nume)
-            @Html.DisplayFor(modelItem => e.Asistent.Utilizator.Prenume)
-        </td>
-    </tr>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pacient)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StatusProgramare)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataConsultatiei)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medic)
-        </th>
-        <th>
-            <p>Editare</p>
-        </th>
-    </tr>
-
-    @foreach (var item in result)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pacient.Utilizator.Nume)
-                @Html.DisplayFor(modelItem => item.Pacient.Utilizator.Prenume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusProgramare)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataConsultatiei)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medic.Utilizator.Nume)
-                @Html.DisplayFor(modelItem => item.Medic.Utilizator.Prenume)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "ManagementProgramari", new { id = item.Pacient.id_Pacient})
-            </td>
-        </tr>
-    }
+        </div>
 
 
-</table>
+    </div>
+</div>

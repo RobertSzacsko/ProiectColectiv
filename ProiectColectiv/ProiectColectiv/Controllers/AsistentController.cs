@@ -19,7 +19,7 @@ namespace ProiectColectiv.Controllers
         // GET: Asistents
         public ActionResult Index()
         {
-            return View(db.Asistent.ToList());
+            return RedirectToAction("ListaProgramari");
         }
 
         // GET: Asistents/Create
@@ -28,17 +28,22 @@ namespace ProiectColectiv.Controllers
             return View();
         }
 
-        public ActionResult ListaProgramari(int? id)
+        public ActionResult ListaProgramari()
         {
-            Asistent asistent = db.Asistent.Find(id);
-            if (id == null)
-            {
-                return View(db.Programari.ToList());
-            }
-            else
-            {
-                return View(db.Programari.SqlQuery("select * from Programari where id_Asistent = @p0", asistent.id_Asistent));
-            }
+            var user = (Utilizator)Session["Utilizator"];
+            var asistent = db.Asistent.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            return (View(asistent));
+        }
+        [HttpGet]
+        public ActionResult ConfirmaProgramare(int? idprog)
+        {
+            var user = (Utilizator)Session["Utilizator"];
+            var asistent = db.Asistent.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
+            
+            
+            db.Programari.First(x => x.id_Programare == idprog).StatusProgramare = "Stabilit";
+            db.SaveChanges();
+            return RedirectToAction("ListaProgramari");
         }
 
         public ActionResult ManagementProgramari(int? id)
