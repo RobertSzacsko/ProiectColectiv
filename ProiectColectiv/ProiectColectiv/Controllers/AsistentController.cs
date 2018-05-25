@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace ProiectColectiv.Controllers
 {
-    public class AsistentsController : Controller
+    public class AsistentController : Controller
     {
         private ProiectColectivEntities db = new ProiectColectivEntities();
 
@@ -53,7 +53,7 @@ namespace ProiectColectiv.Controllers
             else
             {
                 return View(db.Programari.SqlQuery("select * from Programari where id_Asistent = @p0", asistent.id_Asistent));
-            }            
+            }
         }
 
         public async Task<ActionResult> ManagementPacienti(int? id)
