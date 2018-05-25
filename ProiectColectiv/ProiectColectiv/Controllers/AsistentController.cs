@@ -12,29 +12,14 @@ using System.Data.SqlClient;
 
 namespace ProiectColectiv.Controllers
 {
-    public class AsistentsController : Controller
+    public class AsistentController : Controller
     {
         private ProiectColectivEntities db = new ProiectColectivEntities();
 
         // GET: Asistents
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Asistent.ToListAsync());
-        }
-
-        // GET: Asistents/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Asistent asistent = await db.Asistent.FindAsync(id);
-            if (asistent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(asistent);
+            return View(db.Asistent.ToList());
         }
 
         // GET: Asistents/Create
@@ -53,12 +38,12 @@ namespace ProiectColectiv.Controllers
             else
             {
                 return View(db.Programari.SqlQuery("select * from Programari where id_Asistent = @p0", asistent.id_Asistent));
-            }            
+            }
         }
 
-        public async Task<ActionResult> ManagementPacienti(int? id)
+        public ActionResult ManagementProgramari(int? id)
         {
-            Pacient pacient = await db.Pacient.FindAsync(id);
+            Pacient pacient =  db.Pacient.Find(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,9 +55,15 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
 
-        public ActionResult ManagementProgramari()
+        public ActionResult ManagementPacienti([Bind(Include = "id_Pacient")] Pacient newPacient)
         {
-            return View();
+            /*if (ModelState.IsValid)
+            {
+                db.Pacient.Add(newPacient);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }*/
+            return View(newPacient);
         }
 
         // POST: Asistents/Create
@@ -80,25 +71,25 @@ namespace ProiectColectiv.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_Asistent")] Asistent asistent)
+        public ActionResult Create([Bind(Include = "id_Asistent")] Asistent asistent)
         {
             if (ModelState.IsValid)
             {
                 db.Asistent.Add(asistent);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(asistent);
         }
 
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Asistent asistent = await db.Asistent.FindAsync(id);
+            Asistent asistent = db.Asistent.Find(id);
             if (asistent == null)
             {
                 return HttpNotFound();
@@ -108,50 +99,21 @@ namespace ProiectColectiv.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_Asistent")] Asistent asistent)
+        public ActionResult Edit([Bind(Include = "id_Asistent")] Asistent asistent)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(asistent).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(asistent);
         }
 
-        // GET: Asistents/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Logout()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Asistent asistent = await db.Asistent.FindAsync(id);
-            if (asistent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(asistent);
-        }
-
-        // POST: Asistents/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            Asistent asistent = await db.Asistent.FindAsync(id);
-            db.Asistent.Remove(asistent);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
