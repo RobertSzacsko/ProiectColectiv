@@ -19,7 +19,7 @@ namespace ProiectColectiv
         {
             this.Utilizator = new HashSet<Utilizator>();
         }
-        public DatePersonale(string cnp,string email,string telefon,int? varsta, string sex,string adresa)
+        public DatePersonale(string cnp,string email,string telefon,int varsta, string sex,string adresa)
         {
             this.CNP = cnp;
             this.Email = email;
@@ -32,7 +32,7 @@ namespace ProiectColectiv
         public string CNP { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }
-        public Nullable<int> Varsta { get; set; }
+        public int Varsta { get; set; }
         public string Sex { get; set; }
         public string Adresa { get; set; }
     
