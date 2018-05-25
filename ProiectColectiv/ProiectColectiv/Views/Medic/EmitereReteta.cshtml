@@ -12,68 +12,75 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card padding margin-bottom-10">
 
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("EmitereReteta", "Medic", new { id = UrlParameter.Optional }, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-horizontal">
+                <div class="form-horizontal">
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Reteta.Tip, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Reteta.Tip, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Reteta.Tip, "", new { @class = "text-danger" })
-                            </div>
+                    <div hidden class="form-group">
+                        @Html.LabelFor(model => model.Reteta.id_Reteta, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Reteta.id_Reteta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Reteta.id_Reteta, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Reteta.Durata, htmlAttributes: new { @class = "control-label col-md-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Reteta.Durata, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Reteta.Durata, "", new { @class = "text-danger" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Reteta.Tip, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Reteta.Tip, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Reteta.Tip, "", new { @class = "text-danger" })
                         </div>
-                        <h4>Medicamente</h4>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Reteta.Durata, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Reteta.Durata, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Reteta.Durata, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <h4>Medicamente</h4>
 
-                        <div class="row margin">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="card padding margin-bottom-10">
-                                    <div id="forClone">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="Medicamente_Nume">Nume</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control text-box single-line" id="Medicamente_Nume" name="Medicamente.Nume" type="text" value="">
-                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Nume" data-valmsg-replace="true"></span>
-                                            </div>
+                    <div class="row margin">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card padding margin-bottom-10">
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <div id="AddM" class="btn btn-default">Adauga medicament</div>
+                                    </div>
+                                </div>
+                                <div id="forClone">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Medicamente.Nume, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.Medicamente.Nume, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Medicamente.Nume, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="Medicamente_Cantitate">Cantitate</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control text-box single-line" id="Medicamente_Cantitate" name="Medicamente.Cantitate" type="text" value="">
-                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Cantitate" data-valmsg-replace="true"></span>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Medicamente.Cantitate, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.Medicamente.Cantitate, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Medicamente.Cantitate, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3" for="Medicamente_Administrare">Administrare</label>
-                                            <div class="col-md-9">
-                                                <input class="form-control text-box single-line" id="Medicamente_Administrare" name="Medicamente.Administrare" type="text" value="">
-                                                <span class="field-validation-valid text-danger" data-valmsg-for="Medicamente.Administrare" data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-offset-3 col-md-9">
-                                                <button id="AddM" type="button" class="btn btn-default" data-dismiss="modal">Adauga medicament</button>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Medicamente.Administrare, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.EditorFor(model => model.Medicamente.Administrare, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Medicamente.Administrare, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-9">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Emite</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Emite</button>
                         </div>
                     </div>
+                </div>
                 }
             </div>
         </div>

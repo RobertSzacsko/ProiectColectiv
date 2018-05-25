@@ -6,9 +6,11 @@
         var id = this.nextElementSibling.getAttribute("value");
         $("form").attr("action", '/Medic/AddDiagnostic/' + id);
     });
-});
 
-JQuery("#AddM").click(function () {
-    console.log("dadasdasdasd");
-    //$("#forClone").clone().appendTo(this);
+    $("#AddM").on("click", function () {
+
+        var clone = $("#forClone:last").clone();
+        clone.find("input").val("");
+        clone.insertBefore($("#forClone")).fadeIn("slow");
+    });
 });
