@@ -19,9 +19,9 @@ namespace ProiectColectiv.Controllers
         //GET: Pacient
         public ActionResult IstoricFisa()
         {
-            //var pacient = (Utilizator)Session["Utilizator"];
-            var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
-            return View(pacient);
+            var utilizator = (Utilizator)Session["Utilizator"];
+           // var pacient = db.Pacient.First(x => x.Utilizator.Nume == "Popa" && x.Utilizator.Prenume == "Valeria");
+            return View(utilizator.Pacient);
         }
 
         public ActionResult DatePersonale()
