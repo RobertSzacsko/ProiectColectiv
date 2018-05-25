@@ -22,21 +22,6 @@ namespace ProiectColectiv.Controllers
             return View(db.Asistent.ToList());
         }
 
-        // GET: Asistents/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Asistent asistent = db.Asistent.Find(id);
-            if (asistent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(asistent);
-        }
-
         // GET: Asistents/Create
         public ActionResult Create()
         {
@@ -56,7 +41,7 @@ namespace ProiectColectiv.Controllers
             }
         }
 
-        public ActionResult ManagementPacienti(int? id)
+        public ActionResult ManagementProgramari(int? id)
         {
             Pacient pacient =  db.Pacient.Find(id);
             if (id == null)
@@ -70,9 +55,15 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
 
-        public ActionResult ManagementProgramari()
+        public ActionResult ManagementPacienti([Bind(Include = "id_Pacient")] Pacient newPacient)
         {
-            return View();
+            /*if (ModelState.IsValid)
+            {
+                db.Pacient.Add(newPacient);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }*/
+            return View(newPacient);
         }
 
         // POST: Asistents/Create
@@ -119,39 +110,10 @@ namespace ProiectColectiv.Controllers
             return View(asistent);
         }
 
-        // GET: Asistents/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Logout()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Asistent asistent = db.Asistent.Find(id);
-            if (asistent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(asistent);
-        }
-
-        // POST: Asistents/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Asistent asistent = db.Asistent.Find(id);
-            db.Asistent.Remove(asistent);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            Session.RemoveAll();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -13,7 +13,7 @@
         <td style="font-weight:600; font-size:20px">
             @{var e = Model.First();
                 string path = HttpContext.Current.Request.Url.AbsolutePath;
-                if (path == "/Asistents/ListaProgramari")
+                if (path == "/Asistent/ListaProgramari")
                 {
                     e.Asistent.Utilizator.Nume = "Toate ";
                     e.Asistent.Utilizator.Prenume = "programarile: ";
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Medic.Utilizator.Prenume)
             </td>
             <td>
-                @Html.ActionLink("Edit", "ManagementPacienti", new { id = item.Pacient.id_Pacient})
+                @Html.ActionLink("Edit", "ManagementProgramari", new { id = item.Pacient.id_Pacient})
             </td>
         </tr>
     }
