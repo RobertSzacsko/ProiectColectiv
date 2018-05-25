@@ -18,6 +18,7 @@ namespace ProiectColectiv.Controllers
         private ProiectColectivEntities db = new ProiectColectivEntities();
 
         // GET: Medic
+        [ValidationSession("Medic")]
         public ActionResult Index()
         {
             Utilizator user = (Utilizator)Session["Utilizator"];
@@ -32,7 +33,7 @@ namespace ProiectColectiv.Controllers
 
             return View(medic);
         }
-
+        [ValidationSession("Medic")]
         // GET: Medic/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,7 +48,7 @@ namespace ProiectColectiv.Controllers
             }
             return View(medic);
         }
-
+        [ValidationSession("Medic")]
         // GET: Medic/Create
         public ActionResult Create()
         {
@@ -59,6 +60,7 @@ namespace ProiectColectiv.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidationSession("Medic")]
         public ActionResult Create([Bind(Include = "id_Medic")] Medic medic)
         {
             if (ModelState.IsValid)
@@ -72,6 +74,7 @@ namespace ProiectColectiv.Controllers
         }
 
         // GET: Medic/Edit/5
+        [ValidationSession("Medic")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +94,7 @@ namespace ProiectColectiv.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidationSession("Medic")]
         public ActionResult Edit([Bind(Include = "id_Medic")] Medic medic)
         {
             if (ModelState.IsValid)
@@ -103,6 +107,7 @@ namespace ProiectColectiv.Controllers
         }
 
         // GET: Medic/Delete/5
+        [ValidationSession("Medic")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +125,7 @@ namespace ProiectColectiv.Controllers
         // POST: Medic/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [ValidationSession("Medic")]
         public ActionResult DeleteConfirmed(int id)
         {
             Medic medic = db.Medic.Find(id);
@@ -127,7 +133,7 @@ namespace ProiectColectiv.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [ValidationSession("Medic")]
         public ActionResult VizualizareFisa(int? id)
         {
             if (id == null)
@@ -143,12 +149,14 @@ namespace ProiectColectiv.Controllers
         }
 
         [ChildActionOnly]
+        [ValidationSession("Medic")]
         public ActionResult StabilireDiagnostic()
         {
             return PartialView();
         }
 
         [HttpPost]
+        [ValidationSession("Medic")]
         public ActionResult AddDiagnostic([Bind(Include = "id_Diagnostic,Descriere")] Diagnostic diagnostic)
         {
             ViewData["modal"] = 1;
@@ -173,6 +181,7 @@ namespace ProiectColectiv.Controllers
         }
 
         [HttpGet]
+        [ValidationSession("Medic")]
         public ActionResult EmitereReteta(int? id)
         {
             FisaMedicala fisaMedicala = db.FisaMedicala.Find(id);
@@ -190,6 +199,7 @@ namespace ProiectColectiv.Controllers
 
         [HttpPost, ActionName("EmitereReteta")]
         [ValidateAntiForgeryToken]
+        [ValidationSession("Medic")]
         public ActionResult Emitere([Bind(Include = "Reteta,Medicamente")] RetetaMedic rm)
         {
             var id = Convert.ToInt32(Request.UrlReferrer.ToString().Split('/').Last());
@@ -223,12 +233,14 @@ namespace ProiectColectiv.Controllers
             return View();
         }
 
+        [ValidationSession("Medic")]
         public ActionResult Asistent()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidationSession("Medic")]
         public ActionResult Asistent([Bind(Include = "CodUtilizator,Nume,Prenume,Parola")] Utilizator ut)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -273,7 +285,7 @@ namespace ProiectColectiv.Controllers
             }
             return View();
         }
-
+        [ValidationSession("Medic")]
         private List<Medicamente> MapRequest(string nume, string cantitate, string administratie)
         {
             string[] numes = nume.Split(new char[] { ',' }, StringSplitOptions.None);
@@ -293,7 +305,7 @@ namespace ProiectColectiv.Controllers
 
             return list;
         }
-
+        [ValidationSession("Medic")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -17,17 +17,18 @@ namespace ProiectColectiv.Controllers
         private ProiectColectivEntities db = new ProiectColectivEntities();
 
         // GET: Asistents
+        [ValidationSession("Asistent")]
         public ActionResult Index()
         {
             return RedirectToAction("ListaProgramari");
         }
-
+        [ValidationSession("Asistent")]
         // GET: Asistents/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [ValidationSession("Asistent")]
         public ActionResult ListaProgramari()
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -35,6 +36,7 @@ namespace ProiectColectiv.Controllers
             return (View(asistent));
         }
         [HttpGet]
+        [ValidationSession("Asistent")]
         public ActionResult ConfirmaProgramare(int? idprog)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -45,7 +47,7 @@ namespace ProiectColectiv.Controllers
             db.SaveChanges();
             return RedirectToAction("ListaProgramari");
         }
-
+        [ValidationSession("Asistent")]
         public ActionResult ManagementProgramari(int? id)
         {
             Pacient pacient =  db.Pacient.Find(id);
@@ -59,7 +61,7 @@ namespace ProiectColectiv.Controllers
             }
             return View(pacient);
         }
-
+        [ValidationSession("Asistent")]
         public ActionResult ManagementPacienti([Bind(Include = "id_Pacient")] Pacient newPacient)
         {
             /*if (ModelState.IsValid)
@@ -70,7 +72,7 @@ namespace ProiectColectiv.Controllers
             }*/
             return View(newPacient);
         }
-
+        [ValidationSession("Asistent")]
         // POST: Asistents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -87,7 +89,7 @@ namespace ProiectColectiv.Controllers
 
             return View(asistent);
         }
-
+        [ValidationSession("Asistent")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,7 +103,7 @@ namespace ProiectColectiv.Controllers
             }
             return View(asistent);
         }
-
+        [ValidationSession("Asistent")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id_Asistent")] Asistent asistent)
@@ -114,7 +116,7 @@ namespace ProiectColectiv.Controllers
             }
             return View(asistent);
         }
-
+        [ValidationSession("Asistent")]
         public ActionResult Logout()
         {
             Session.RemoveAll();

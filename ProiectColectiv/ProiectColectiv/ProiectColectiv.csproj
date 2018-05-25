@@ -171,6 +171,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MedicController.cs" />
     <Compile Include="Controllers\PacientController.cs" />
+    <Compile Include="Controllers\ValidationSession.cs" />
     <Compile Include="DatePersonale.cs">
       <DependentUpon>ProiectColectiv.tt</DependentUpon>
     </Compile>

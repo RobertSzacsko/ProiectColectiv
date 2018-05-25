@@ -12,6 +12,7 @@ namespace ProiectColectiv.Controllers
 
         ProiectColectivEntities db = new ProiectColectivEntities();
         // GET: Pacient
+        [ValidationSession("Pacient")]
         public ActionResult Index()
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -20,20 +21,21 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
         //GET: Pacient
+        [ValidationSession("Pacient")]
         public ActionResult IstoricFisa()
         {
             var user = (Utilizator)Session["Utilizator"];
             var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
             return View(pacient);
         }
-
+        [ValidationSession("Pacient")]
         public ActionResult DatePersonale()
         {
             var user = (Utilizator)Session["Utilizator"];
             var pacient = db.Pacient.Where(x => x.Utilizator.id_Utilizator == user.id_Utilizator).First();
             return View(pacient);
         }
-
+        [ValidationSession("Pacient")]
         [HttpGet]
         public ActionResult Programare()
         {
@@ -42,6 +44,7 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
         [HttpPost]
+        [ValidationSession("Pacient")]
         public ActionResult Programare(Programari model)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -61,6 +64,7 @@ namespace ProiectColectiv.Controllers
             return View(pacient);
         }
         [HttpPost]
+        [ValidationSession("Pacient")]
         public ActionResult EditareProgramare(Programari model)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -80,7 +84,7 @@ namespace ProiectColectiv.Controllers
 
             return View(pacient);
         }
-
+        [ValidationSession("Pacient")]
         public ActionResult StergeProgramare(Programari model)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -97,6 +101,7 @@ namespace ProiectColectiv.Controllers
         }
 
         [HttpPost]
+        [ValidationSession("Pacient")]
         public ActionResult Index(Programari model)
         {
             var user = (Utilizator)Session["Utilizator"];
@@ -114,7 +119,7 @@ namespace ProiectColectiv.Controllers
             }
             return View(pacient);
         }
-
+        [ValidationSession("Pacient")]
         public ActionResult Logout()
         {
             Session.RemoveAll();
